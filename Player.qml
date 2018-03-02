@@ -60,7 +60,8 @@ Item{
                     +playEngine.albumTitle+","
                     +playEngine.coverArtUrlSmall+","         );
         playbackInfo.title=playEngine.title;
-        //TODO Update the list selected items.
+        //TODO Update the list selected items.Not working
+        //playListObj.currentIndex=playEngine.getCurrentIndex()
     }
 
     BrowsePopup

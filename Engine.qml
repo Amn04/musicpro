@@ -54,6 +54,11 @@ Item {
         playlist.previous()
     }
 
+    function getCurrentIndex()
+    {
+        return playlist.currentIndex
+    }
+
     function play()
     {
         player.play()
