@@ -48,6 +48,14 @@ Item{
             id:playListObj
             width: parent.width
             height: parent.height/3
+            Component.onCompleted:
+            {
+                playListObj.clicked.connect(onClickEvent)
+            }
+            function onClickEvent(index)
+            {
+                playEngine.playAtIndex(index)
+            }
         }
         PlayControl
         {

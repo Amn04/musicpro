@@ -47,6 +47,11 @@ Item {
         playEngine.playbackstatus=playing
     }
 
+    function playAtIndex(index)
+    {
+       playlist.currentIndex=index
+    }
+
     function pause()
     {
         player.pause()

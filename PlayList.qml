@@ -2,8 +2,10 @@ import QtQuick 2.0
 import QtQuick.Controls 2.3
 
 Item {
+    id:playListControl
     FontLoader { id: openSansFontRegular; source: "qrc:/font/resources/fonts/open-sans/OpenSans-Regular.ttf" }
     property alias listmodel:playlistview.model
+    signal clicked(int index)
     Component
     {
         id:playListDelegate
@@ -28,8 +30,16 @@ Item {
                     {
                         return (str.slice(str.lastIndexOf("/")+1))
                     }
+                    MouseArea
+                    {
+                        anchors.fill: parent
+                        onClicked:
+                        {
+                            console.log("clicked: at index: " + index)
+                            playListControl.clicked(index)
+                        }
+                    }
                 }
-
             }
         }
 
