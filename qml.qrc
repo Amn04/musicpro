@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Player.qml</file>
+        <file>PlayControl.qml</file>
+        <file>PlayInfo.qml</file>
+        <file>PlayList.qml</file>
+        <file>ControlButton.qml</file>
+    </qresource>
+    <qresource prefix="/graphics">
+        <file>resources/background.png</file>
+        <file>resources/playCtl_Bg.png</file>
+    </qresource>
+    <qresource prefix="/font">
+        <file>resources/fonts/F_Awesome-5_Regular-400.otf</file>
+        <file>resources/fonts/F_Awesome-5_Free-Solid-900.otf</file>
+    </qresource>
+</RCC>
