@@ -10,6 +10,7 @@
         <file>TitleBar.qml</file>
         <file>BrowsePopup.qml</file>
         <file>Engine.qml</file>
+        <file>PlaySlider.qml</file>
     </qresource>
     <qresource prefix="/graphics">
         <file>resources/background.png</file>

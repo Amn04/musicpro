@@ -26,10 +26,18 @@ Item {
         }
 
         ControlButton{
+            id:playpauseCtrl
             width:playerCtlBg.width/3
             height: playerCtlBg.height/2;
             text: "\uf144" //For Pause text: "\uf28b"
-            onClicked: playerCtrl.clicked(playerCtrl.playPauseButton)
+            onClicked: {
+                //TODO: This need to be in Sync with real player , for now okay
+                if(playpauseCtrl.text==="\uf144")
+                    playpauseCtrl.text="\uf28b"
+                else
+                    playpauseCtrl.text="\uf144"
+                playerCtrl.clicked(playerCtrl.playPauseButton)
+            }
         }
 
         ControlButton{

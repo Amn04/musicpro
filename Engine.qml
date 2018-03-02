@@ -8,6 +8,8 @@ Item {
     property int paused:1
     property int stopped:2
     property int playbackstatus:2
+    //TODO:Dont expose this object,anti pattern
+    property alias playerBackend: player
     property alias title:player.title
     property alias subTitle:player.subTitle
     property alias category:player.category
@@ -34,11 +36,22 @@ Item {
         readonly property string albumArtist: !!metaData.albumArtist? qsTr("%1").arg(metaData.albumArtist):"No Album Artist"
         readonly property string coverArtUrlSmall: !!metaData.coverArtUrlSmall? qsTr("%1").arg(metaData.coverArtUrlSmall):""
         readonly property string genre: !!metaData.genre? qsTr("%1").arg(metaData.genre):""
+       // onPositionChanged:
     }
 
     function getPlaybackStatus()
     {
        return playEngine.playbackstatus;
+    }
+
+    function next()
+    {
+        playlist.next()
+    }
+
+    function previous()
+    {
+        playlist.previous()
     }
 
     function play()

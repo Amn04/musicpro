@@ -5,6 +5,7 @@ Item {
     id:playListControl
     FontLoader { id: openSansFontRegular; source: "qrc:/font/resources/fonts/open-sans/OpenSans-Regular.ttf" }
     property alias listmodel:playlistview.model
+    property alias currentIndex:playlistview.currentIndex
     signal clicked(int index)
     Component
     {
@@ -23,7 +24,8 @@ Item {
 
                 Text {
                     font.family: openSansFontRegular.name
-                    color:"white"
+                    font.pixelSize: (playlistview.currentIndex==index)?12:10
+                    color:(playlistview.currentIndex==index)?"#05E9FF":"white"
                     text: basename(source.toString())
                     //Function to get the basename from URL
                     function basename(str)
@@ -36,13 +38,13 @@ Item {
                         onClicked:
                         {
                             console.log("clicked: at index: " + index)
+                            playlistview.currentIndex = index
                             playListControl.clicked(index)
                         }
                     }
                 }
             }
         }
-
     }
 
     ListView {

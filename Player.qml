@@ -1,9 +1,66 @@
 import QtQuick 2.0
 
 Item{
+    id:playerMainObj
+    //TODO: Do we need this, Or let the player control everyone ?
+    signal playbackStatusPlaying()
+    //signal playbackStatusPaused()
+    signal playbackStatusStopped()
+    signal songChanged()
     Engine
     {
         id:playEngine
+        Component.onCompleted: {
+            playEngine.playerBackend.playbackStateChanged.connect(onBackendPlaybackStatusChanged)
+            playEngine.playerBackend.positionChanged.connect(onBackEndPositionChanged)
+        }
+
+
+        function onBackEndPositionChanged()
+        {
+            //TODO: Dirty way , lets clean up later
+            //console.log("Updating Position"+playEngine.playerBackend.position)
+            playbackSlider.maxValue=playEngine.playerBackend.duration
+            playbackSlider.currentValue=playEngine.playerBackend.position
+        }
+
+        function onBackendPlaybackStatusChanged()
+        {
+            updateUI()
+            if(playEngine.getPlaybackStatus()===playEngine.playing)
+            {
+
+            }
+            else if(playEngine.getPlaybackStatus()===playEngine.paused)
+            {
+
+            }
+            else if(playEngine.getPlaybackStatus()===playEngine.stopped)
+            {
+                playerMainObj.playbackStatusStopped()
+            }
+            else
+            {
+                console.error("Unknown Playback Status")
+            }
+        }
+    }
+
+    function updateUI()
+    {
+        console.log("Updating the UI for playback change")
+        playbackSlider.maxValue=playEngine.playerBackend.duration
+        playbackSlider.minValue=0
+        playbackSlider.currentValue=playEngine.playerBackend.position
+
+        console.log(playEngine.author+","
+                    +playEngine.title+","
+                    +playEngine.subTitle+","
+                    +playEngine.albumArtist+","
+                    +playEngine.albumTitle+","
+                    +playEngine.coverArtUrlSmall+","         );
+        playbackInfo.title=playEngine.title;
+        //TODO Update the list selected items.
     }
 
     BrowsePopup
@@ -36,7 +93,7 @@ Item{
     {
         width: parent.width
         height: parent.height//-titleBar.height
-        spacing: 10
+        spacing: 2
         PlayInfo
         {
             id:playbackInfo;
@@ -61,7 +118,7 @@ Item{
         {
             id:playControlObj
             width: parent.width
-            height: parent.height/4
+            height: parent.height/5
             Component.onCompleted:
             {
                 playControlObj.clicked.connect(onClickEvent)
@@ -70,7 +127,7 @@ Item{
             {
                 if(buttonId===playControlObj.previousButton)
                 {
-                    console.log("Previous");
+                    playEngine.previous()
                 }
                 else if(buttonId===playControlObj.playPauseButton)
                 {
@@ -88,14 +145,7 @@ Item{
                 }
                 else if(buttonId===playControlObj.nextButton)
                 {
-                     console.log(playEngine.author+","
-                                 +playEngine.title+","
-                                 +playEngine.subTitle+","
-                                 +playEngine.albumArtist+","
-                                 +playEngine.albumTitle+","
-                                 +playEngine.coverArtUrlSmall+","         );
-                    playbackInfo.title=playEngine.title
-
+                    playEngine.next()
                 }
                 else
                 {
@@ -103,6 +153,13 @@ Item{
                 }
             }
         }
+        PlaySlider
+        {
+            id:playbackSlider
+            width: parent.width
+            height: parent.height/10
+        }
+
         OptionsBar
         {
             id:optionCtrlObj
