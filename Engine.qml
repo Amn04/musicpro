@@ -16,6 +16,7 @@ Item {
     property alias albumArtist:player.albumArtist
     property alias genre:player.genre
     property alias coverArtUrlSmall:player.coverArtUrlSmall
+    property alias playlist: playlist
     Playlist
     {
         id:playlist;

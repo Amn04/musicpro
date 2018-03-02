@@ -3,47 +3,7 @@ import QtQuick.Controls 2.3
 
 Item {
     FontLoader { id: openSansFontRegular; source: "qrc:/font/resources/fonts/open-sans/OpenSans-Regular.ttf" }
-
-    ListModel {
-        id:testmodel
-        ListElement {
-            name: "Hotel California"
-            number: "12:30"
-        }
-        ListElement {
-            name: "Waka Waka"
-            number: "1:30"
-        }
-        ListElement {
-            name: "Teri Meri"
-            number: "4:30"
-        }
-        ListElement {
-            name: "Hotel California"
-            number: "12:30"
-        }
-        ListElement {
-            name: "Waka Waka"
-            number: "1:30"
-        }
-        ListElement {
-            name: "Teri Meri"
-            number: "4:30"
-        }
-        ListElement {
-            name: "Hotel California"
-            number: "12:30"
-        }
-        ListElement {
-            name: "Waka Waka"
-            number: "1:30"
-        }
-        ListElement {
-            name: "Teri Meri"
-            number: "4:30"
-        }
-    }
-
+    property alias listmodel:playlistview.model
     Component
     {
         id:playListDelegate
@@ -62,17 +22,23 @@ Item {
                 Text {
                     font.family: openSansFontRegular.name
                     color:"white"
-                    text: name+': ' + number
+                    text: basename(source.toString())
+                    //Function to get the basename from URL
+                    function basename(str)
+                    {
+                        return (str.slice(str.lastIndexOf("/")+1))
+                    }
                 }
 
             }
         }
+
     }
 
     ListView {
-        id:playlist
+        id:playlistview
         width: parent.width; height: parent.height
-        model:testmodel
+        model:0
         delegate: playListDelegate
         ScrollBar.vertical: ScrollBar {}
     }

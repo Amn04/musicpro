@@ -13,10 +13,24 @@ Item {
             color:"white"
             font.pointSize: 14
             NumberAnimation on x{
+                id:titleAnimation
                 from: songTitleText.width
                 to: -1*songTitleText.width
                 loops: Animation.Infinite
                 duration: 8000
+                Component.onCompleted:
+                {
+                    //just disabling by default
+                    titleAnimation.stop()
+                    songTitleText.x=0
+                }
+            }
+            onTextChanged:
+            {
+                //Check if the title is so long
+                titleAnimation.stop()
+                if(songTitleText.text.length>20)
+                    titleAnimation.start()
             }
         }
         Text {

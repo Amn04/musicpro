@@ -17,6 +17,7 @@ Item{
         {
             console.log("Adding Multiple files")
             playEngine.addMultiple(fileList)
+            playListObj.listmodel=playEngine.playlist
         }
     }
 
@@ -44,6 +45,7 @@ Item{
         }
         PlayList
         {
+            id:playListObj
             width: parent.width
             height: parent.height/3
         }
@@ -110,6 +112,7 @@ Item{
                 else if(buttonId===optionCtrlObj.browseFilesButton)
                 {
                     browsePopUp.selectFiles()
+
                 }
                 else
                 {
