@@ -3,9 +3,11 @@ import QtQuick.Controls 2.3
 
 Item
 {
+    id:ctrlButtonContainer
     //https://fontawesome.com/cheatsheet
     FontLoader { id: fontAwesome; source: "qrc:/font/resources/fonts/F_Awesome-5_Free-Solid-900.otf" }
     property alias text: ctrlButtontext.text
+    signal clicked()
     Button
     {
         id:ctrlButton;
@@ -34,7 +36,7 @@ Item
             text: "\uf28b"
             color: ctrlButton.pressed ?"white" : "#05E9FF"
         }
-        onClicked: console.log("Hello World !!!");
+        onClicked: ctrlButtonContainer.clicked()
     }
 }
 

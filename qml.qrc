@@ -7,6 +7,9 @@
         <file>PlayList.qml</file>
         <file>ControlButton.qml</file>
         <file>OptionsBar.qml</file>
+        <file>TitleBar.qml</file>
+        <file>BrowsePopup.qml</file>
+        <file>Engine.qml</file>
     </qresource>
     <qresource prefix="/graphics">
         <file>resources/background.png</file>
