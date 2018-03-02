@@ -14,23 +14,22 @@ Item {
         anchors.verticalCenter: playerCtlBg.verticalCenter
         spacing: 3;
         ControlButton{
-            width:playerCtlBg.width/5
+            width:playerCtlBg.width/7
             height: playerCtlBg.height/2;
-            text: "\uf100"
+            text: "\uf07c"
         }
 
         ControlButton{
-            width:playerCtlBg.width/3
+            width:playerCtlBg.width/7
             height: playerCtlBg.height/2;
-            text: "\uf144" //For Pause text: "\uf28b"
+            text: "\uf1c7"
         }
 
         ControlButton{
-            width:playerCtlBg.width/5
+            width:playerCtlBg.width/7
             height:playerCtlBg.height/2;
-            text: "\uf101"
+            text: "\uf028"
         }
     }
 }
-
 

@@ -16,7 +16,7 @@ Item{
         PlayInfo
         {
             width: parent.width
-            height: parent.height/3
+            height: parent.height/4
         }
         PlayList
         {
@@ -26,9 +26,13 @@ Item{
         PlayControl
         {
             width: parent.width
-            height: parent.height/3
+            height: parent.height/4
         }
-
+        OptionsBar
+        {
+            width: parent.width
+            height: parent.height/5
+        }
     }
 
 
