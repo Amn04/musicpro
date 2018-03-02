@@ -38,6 +38,7 @@ Item{
         spacing: 10
         PlayInfo
         {
+            id:playbackInfo;
             width: parent.width
             height: parent.height/4
         }
@@ -77,7 +78,13 @@ Item{
                 }
                 else if(buttonId===playControlObj.nextButton)
                 {
-                     console.log("Next");
+                     console.log(playEngine.author+","
+                                 +playEngine.title+","
+                                 +playEngine.subTitle+","
+                                 +playEngine.albumArtist+","
+                                 +playEngine.albumTitle+","
+                                 +playEngine.coverArtUrlSmall+","         );
+                    playbackInfo.title=playEngine.title
 
                 }
                 else
