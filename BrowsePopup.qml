@@ -22,13 +22,7 @@ Item {
                 browseFiles.listofSelectedFiles(fileDialog.fileUrls)
             }
         }
-        onRejected: {
-           // console.log("Canceled")
-        }
-        //Component.onCompleted: visible = true
     }
-
-
 
     function selectFolder()
     {

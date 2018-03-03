@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/graphics">
+        <file>resources/background.png</file>
+        <file>resources/playCtl_Bg.png</file>
+    </qresource>
+</RCC>

@@ -1,61 +1,34 @@
 import QtQuick 2.0
 import Qt.labs.settings 1.0
+import io.qt.examples.backend 1.0
 
-Item
-{
+Item {
     id:playerMainObj
-    Settings
-    {
-        id:playerSettingsObj
+
+    Image {
+        id: playerBg
+        source: "qrc:/graphics/resources/background.png"
+        anchors.fill: parent;
     }
 
-    Timer {
-        id:metaDataFetcher
-        interval: 1000;
-
-        onTriggered:
-        {
-            updateUIForNewPlayBack()
-        }
-    }
-
-    Component.onCompleted:
-    {
-    }
-
-    Component.onDestruction:
-    {
-        //TODO :Implement
-        //Save and Restore Settings
-    }
-
-    Engine
-    {
+    Engine {
         id:playEngine
-        Component.onCompleted:
-        {
+
+        Component.onCompleted: {
             playEngine.playerBackend.playbackStateChanged.connect(onBackendPlaybackStatusChanged)
             playEngine.playerBackend.positionChanged.connect(onBackEndPositionChanged)
             playEngine.newMediaStarted.connect(prepareForNewMedia)
         }
 
-        function prepareForNewMedia()
-        {
-            console.log("New Media: "+ playEngine.playlist.currentIndex)
-
-            //add a delay to fetch the metadata
+        function prepareForNewMedia() {
             metaDataFetcher.start()
-
         }
 
-        function onBackEndPositionChanged()
-        {
-         //   playbackSlider.maxValue=playEngine.playerBackend.duration
+        function onBackEndPositionChanged() {
             playbackSlider.currentValue=playEngine.playerBackend.position
         }
 
-        function onBackendPlaybackStatusChanged()
-        {
+        function onBackendPlaybackStatusChanged() {
             if(playEngine.getPlaybackStatus()===playEngine.playing) { }
             else if(playEngine.getPlaybackStatus()===playEngine.paused) { }
             else if(playEngine.getPlaybackStatus()===playEngine.stopped) { }
@@ -63,139 +36,140 @@ Item
         }
     }
 
-    function updateUIForNewPlayBack()
-    {
-        playListObj.currentIndex=playEngine.playlist.currentIndex;
-        playbackSlider.maxValue=playEngine.playerBackend.duration
-        playbackSlider.minValue=0
-        playbackSlider.currentValue=playEngine.playerBackend.position
-        playbackInfo.title=playEngine.playerBackend.metaData.title
+    Timer {
+        id:metaDataFetcher
+        interval: 1000;
+
+        onTriggered: {
+            updateUIForNewPlayBack()
+        }
     }
 
-    BrowsePopup
-    {
+    BrowsePopup {
         id:browsePopUp
         visible: false;
+
         Component.onCompleted: {
             browsePopUp.listofSelectedFiles.connect(addFilesToPlayer)
         }
-        function addFilesToPlayer(fileList)
-        {
-            // console.log("Adding Multiple files")
+        function addFilesToPlayer(fileList) {
             playEngine.addMultiple(fileList)
-            playListObj.listmodel=playEngine.playlist
         }
     }
 
-    Image {
-        id: playerBg
-        source: "qrc:/graphics/resources/background.png"
-        anchors.fill: parent;
-    }
-    /* TitleBar{
-        id:titleBar
-        width: parent.width
-        height: 20
-    }*/
-
-    Column
-    {
+    Column {
         width: parent.width
         height: parent.height//-titleBar.height
         spacing: 2
-        PlayInfo
-        {
+        PlayInfo {
             id:playbackInfo;
             width: parent.width
-            height: parent.height/4
+            height: parent.height/6
         }
-        PlayList
-        {
+        PlayList {
             id:playListObj
             width: parent.width
             height: parent.height/3
-            Component.onCompleted:
-            {
+            Component.onCompleted: {
                 playListObj.clicked.connect(onClickEvent)
             }
-            function onClickEvent(index)
-            {
+            function onClickEvent(index) {
                 playEngine.playAtIndex(index)
             }
         }
-        PlayControl
-        {
-            id:playControlObj
-            width: parent.width
-            height: parent.height/5
-            Component.onCompleted:
-            {
-                playControlObj.clicked.connect(onClickEvent)
-            }
-            function onClickEvent(buttonId)
-            {
-                if(buttonId===playControlObj.previousButton)
-                {
-                    playEngine.previous()
-                }
-                else if(buttonId===playControlObj.playPauseButton)
-                {
-                    // console.log("Click on Play Pause")
 
-                    if(playEngine.getPlaybackStatus()===playEngine.playing)
-                    {
-                        // console.log("Playing, now pausing")
-                        playEngine.pause()
-                    }
-                    else
-                    {
-                        playEngine.play()
-                    }
-                }
-                else if(buttonId===playControlObj.nextButton)
-                {
-                    playEngine.next()
-                }
-                else
-                {
-                    //do nothing , Future
-                }
-            }
-        }
-        PlaySlider
-        {
+        PlaySlider {
             id:playbackSlider
             width: parent.width
             height: parent.height/10
         }
 
-        OptionsBar
-        {
+        PlayControl {
+            id:playControlObj
+            width: parent.width
+            height: parent.height/5
+            Component.onCompleted: {
+                playControlObj.clicked.connect(onClickEvent)
+            }
+            function onClickEvent(buttonId) {
+                if(buttonId===playControlObj.previousButton) {
+                    playEngine.previous()
+                }
+                else if(buttonId===playControlObj.playPauseButton) {
+                    if(playEngine.getPlaybackStatus()===playEngine.playing) {
+                        playEngine.pause()
+                    }
+                    else {
+                        playEngine.play()
+                    }
+                }
+                else if(buttonId===playControlObj.nextButton) {
+                    playEngine.next()
+                }
+                else {
+                    //do nothing , Future
+                }
+            }
+        }
+
+        OptionsBar {
             id:optionCtrlObj
             width: parent.width
             height: parent.height/8
             Component.onCompleted: {
                 optionCtrlObj.clicked.connect(onClickEvent)
             }
-            function onClickEvent(buttonId)
-            {
-                if(buttonId===optionCtrlObj.browseFoldersButton)
-                {
-                    console.log("Browse Folders");
+            function onClickEvent(buttonId) {
+                if(buttonId===optionCtrlObj.browseFoldersButton) {
+                    //console.log("Browse Folders");
                 }
-                else if(buttonId===optionCtrlObj.browseFilesButton)
-                {
+                else if(buttonId===optionCtrlObj.browseFilesButton) {
                     browsePopUp.selectFiles()
-
                 }
-                else
-                {
+                else {
                     //do nothing , Future
                 }
             }
         }
     }
 
+    BackEnd {
+        id: backend
+    }
+
+    Component.onCompleted: {
+        restore()
+        playListObj.listmodel=playEngine.playlist
+    }
+
+    Component.onDestruction: {
+        saveState()
+    }
+
+    function saveState(){
+        var listOffiles = new Array();
+        listOffiles=playEngine.getPlayListItems()
+        backend.previousMediaList=listOffiles;
+    }
+
+    function restore() {
+        var listOffiles = new Array();
+        listOffiles=backend.previousMediaList
+        for(var i = 0; i <listOffiles.length; i++) {
+            playEngine.add(listOffiles[i])
+        }
+    }
+
+    function updateUIForNewPlayBack() {
+        playListObj.currentIndex=playEngine.playlist.currentIndex;
+        playbackSlider.maxValue=playEngine.playerBackend.duration
+        playbackSlider.minValue=0
+        playbackSlider.currentValue=playEngine.playerBackend.position
+        playbackInfo.setText(playEngine.playerBackend.metaData.title
+                             , playEngine.playerBackend.metaData.subTitle
+                             , playEngine.playerBackend.metaData.albumTitle
+                             , playEngine.playerBackend.metaData.albumArtist)
+    }
 
 }
 

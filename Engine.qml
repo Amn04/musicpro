@@ -54,6 +54,16 @@ Item {
         }
     }
 
+    function getPlayListItems()
+    {
+        var listOfFiles=[]
+        console.log("Playlist Count "+playlist.itemCount)
+        for(var i = 0; i < playlist.itemCount; i++) {
+            listOfFiles.push(playlist.itemSource(i))
+        }
+        return listOfFiles
+    }
+
     function getPlaybackStatus()
     {
        return playEngine.playbackstatus;
