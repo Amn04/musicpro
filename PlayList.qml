@@ -53,5 +53,9 @@ Item {
         model:0
         delegate: playListDelegate
         ScrollBar.vertical: ScrollBar {}
+        onCurrentIndexChanged:
+        {
+            console.log("Curent Index changed : "+playlistview.currentIndex)
+        }
     }
 }

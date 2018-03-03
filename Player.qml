@@ -1,67 +1,75 @@
 import QtQuick 2.0
+import Qt.labs.settings 1.0
 
-Item{
+Item
+{
     id:playerMainObj
-    //TODO: Do we need this, Or let the player control everyone ?
-    signal playbackStatusPlaying()
-    //signal playbackStatusPaused()
-    signal playbackStatusStopped()
-    signal songChanged()
+    Settings
+    {
+        id:playerSettingsObj
+    }
+
+    Timer {
+        id:metaDataFetcher
+        interval: 1000;
+
+        onTriggered:
+        {
+            updateUIForNewPlayBack()
+        }
+    }
+
+    Component.onCompleted:
+    {
+    }
+
+    Component.onDestruction:
+    {
+        //TODO :Implement
+        //Save and Restore Settings
+    }
+
     Engine
     {
         id:playEngine
-        Component.onCompleted: {
+        Component.onCompleted:
+        {
             playEngine.playerBackend.playbackStateChanged.connect(onBackendPlaybackStatusChanged)
             playEngine.playerBackend.positionChanged.connect(onBackEndPositionChanged)
+            playEngine.newMediaStarted.connect(prepareForNewMedia)
         }
 
+        function prepareForNewMedia()
+        {
+            console.log("New Media: "+ playEngine.playlist.currentIndex)
+
+            //add a delay to fetch the metadata
+            metaDataFetcher.start()
+
+        }
 
         function onBackEndPositionChanged()
         {
-            //TODO: Dirty way , lets clean up later
-            //console.log("Updating Position"+playEngine.playerBackend.position)
-            playbackSlider.maxValue=playEngine.playerBackend.duration
+         //   playbackSlider.maxValue=playEngine.playerBackend.duration
             playbackSlider.currentValue=playEngine.playerBackend.position
         }
 
         function onBackendPlaybackStatusChanged()
         {
-            updateUI()
-            if(playEngine.getPlaybackStatus()===playEngine.playing)
-            {
-
-            }
-            else if(playEngine.getPlaybackStatus()===playEngine.paused)
-            {
-
-            }
-            else if(playEngine.getPlaybackStatus()===playEngine.stopped)
-            {
-                playerMainObj.playbackStatusStopped()
-            }
-            else
-            {
-                console.error("Unknown Playback Status")
-            }
+            if(playEngine.getPlaybackStatus()===playEngine.playing) { }
+            else if(playEngine.getPlaybackStatus()===playEngine.paused) { }
+            else if(playEngine.getPlaybackStatus()===playEngine.stopped) { }
+            else { console.error("Unknown Playback Status") }
         }
     }
 
-    function updateUI()
+    function updateUIForNewPlayBack()
     {
-        console.log("Updating the UI for playback change")
+        playListObj.currentIndex=playEngine.playlist.currentIndex;
         playbackSlider.maxValue=playEngine.playerBackend.duration
         playbackSlider.minValue=0
         playbackSlider.currentValue=playEngine.playerBackend.position
-
-        console.log(playEngine.author+","
-                    +playEngine.title+","
-                    +playEngine.subTitle+","
-                    +playEngine.albumArtist+","
-                    +playEngine.albumTitle+","
-                    +playEngine.coverArtUrlSmall+","         );
-        playbackInfo.title=playEngine.title;
-        //TODO Update the list selected items.Not working
-        //playListObj.currentIndex=playEngine.getCurrentIndex()
+        playbackInfo.title=playEngine.playerBackend.metaData.title
     }
 
     BrowsePopup
@@ -73,7 +81,7 @@ Item{
         }
         function addFilesToPlayer(fileList)
         {
-            console.log("Adding Multiple files")
+            // console.log("Adding Multiple files")
             playEngine.addMultiple(fileList)
             playListObj.listmodel=playEngine.playlist
         }
@@ -132,11 +140,11 @@ Item{
                 }
                 else if(buttonId===playControlObj.playPauseButton)
                 {
-                    console.log("Click on Play Pause")
+                    // console.log("Click on Play Pause")
 
                     if(playEngine.getPlaybackStatus()===playEngine.playing)
                     {
-                        console.log("Playing, now pausing")
+                        // console.log("Playing, now pausing")
                         playEngine.pause()
                     }
                     else
