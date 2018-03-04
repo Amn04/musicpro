@@ -2,13 +2,18 @@ import QtQuick 2.0
 import Qt.labs.settings 1.0
 import io.qt.examples.backend 1.0
 
-Item {
-    id:playerMainObj
+//TODO: Implement Seek
+//Control Button Sync with Event
 
+Rectangle {
+    id:playerMainObj
+    border.width: 10
+    border.color: "grey"
     Image {
         id: playerBg
         source: "qrc:/graphics/resources/background.png"
-        anchors.fill: parent;
+        anchors.fill: parent
+        anchors.margins: 4
     }
 
     Engine {
@@ -39,7 +44,6 @@ Item {
     Timer {
         id:metaDataFetcher
         interval: 1000;
-
         onTriggered: {
             updateUIForNewPlayBack()
         }
@@ -72,6 +76,7 @@ Item {
         anchors.bottom: parent.bottom
         anchors.right: parent.right
         anchors.left: parent.left
+        anchors.margins: 4
         spacing: 2
         PlaySlider {
             id:playbackSlider
@@ -175,6 +180,7 @@ Item {
                              , playEngine.playerBackend.metaData.subTitle
                              , playEngine.playerBackend.metaData.albumTitle
                              , playEngine.playerBackend.metaData.albumArtist)
+        console.log(playEngine.playerBackend.metaData.coverArtUrlLarge)
     }
 
 }

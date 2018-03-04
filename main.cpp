@@ -2,6 +2,7 @@
 #include <QQmlApplicationEngine>
 #include <QFontDatabase>
 #include <QDebug>
+#include <QIcon>
 #include "backend.h"
 
 int main(int argc, char *argv[])
@@ -11,6 +12,7 @@ int main(int argc, char *argv[])
     app.setOrganizationName("Gogo");
     app.setOrganizationDomain("karthagokul");
     app.setApplicationName("Music Player");
+    app.setWindowIcon(QIcon("qrc:/graphics/resources/gogo.png"));
 
 
      qmlRegisterType<BackEnd>("io.qt.examples.backend", 1, 0, "BackEnd");

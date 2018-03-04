@@ -10,10 +10,10 @@ Item {
     FontLoader { id: openSansFontRegular; source: "qrc:/font/resources/fonts/open-sans/OpenSans-Regular.ttf" }
 
     function setText(title,subTitle,album,artist) {
-        songTitleText.text=title?title:"No Titile"
+        songTitleText.text=title?title:"Unknown Title"
         songSubTitleText.text=subTitle?subTitle:"-"
-        songArtistText.text=artist?artist:"Unknown Artist"
-        songAlbumText.text=album?album:"Unknown Album"
+        songArtistText.text=artist?artist:"-"
+        songAlbumText.text=album?album:"-"
         titleAnimation.start()
     }
 
@@ -23,7 +23,7 @@ Item {
         Text {
             id:songTitleText
             width:parent.width
-            text: "Hotel California | Eagle | "
+            text: "-"
             font.family:openSansFontRegular.name
             font.capitalization: Font.AllUppercase
             color:"white"
@@ -59,7 +59,7 @@ Item {
             font.capitalization: Font.AllUppercase
             color:"white"
             elide: Text.ElideMiddle
-            font.pointSize: 10
+            font.pointSize: 12
         }
 
         Text {
@@ -69,7 +69,7 @@ Item {
             font.capitalization: Font.AllUppercase
             color:"white"
             elide: Text.ElideMiddle
-            font.pointSize: 10
+            font.pointSize: 12
         }
     }
 }

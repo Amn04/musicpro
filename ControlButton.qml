@@ -9,6 +9,7 @@ Item
     property alias text: ctrlButtontext.text
     property int fontsize:30
     property string fontcolor:"#05E9FF"
+    property string hovercolor: "#3B444B"
     signal clicked()
     Button
     {
@@ -16,17 +17,15 @@ Item
         anchors.fill: parent;
         background: Rectangle
         {
+            id:buttonBGRect
             implicitWidth: 100
             implicitHeight: 25
             border.width: ctrlButton.activeFocus ? 2 : 1
             border.color: "#888"
             radius: 4
-            color: ctrlButton.pressed ? "#cccffff" : "transparent"
-            /*gradient: Gradient {
-                GradientStop { position: 0 ; color: ctrlButton.pressed ? "#cccffff" : "#ffffffff" }
-                GradientStop { position: 1 ; color: ctrlButton.pressed ? "#aaaffff" : "#ffffffff" }
-            }*/
+            color: ctrlButton.hovered ? hovercolor : "transparent"
         }
+
         Text
         {
             id:ctrlButtontext;

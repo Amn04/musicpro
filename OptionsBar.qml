@@ -30,7 +30,7 @@ Item {
             width:playerCtlBg.width/7
             height: playerCtlBg.height;
             text: "\uf1c7"
-            fontcolor: "#AA40FF"
+            fontcolor: "#4885ed"
             onClicked: optionsControl.clicked(optionsControl.browseFilesButton)
         }
 
@@ -38,20 +38,20 @@ Item {
             width:playerCtlBg.width/7
             height:playerCtlBg.height;
             text: "\uf044"
-            fontcolor: "#FE7C22"
+            fontcolor: "#4885ed"
         }
         ControlButton{
             width:playerCtlBg.width/7
             height:playerCtlBg.height;
-            text: "\uf028"
-            fontcolor: "#3cba54"
+            text: "\uf028" //mute f026
+            fontcolor: "#4885ed"
         }
 
         ControlButton{
             width:playerCtlBg.width/7
             height:playerCtlBg.height;
             text: "\uf013"
-            fontcolor: "#f4c20d"
+            fontcolor: "#4885ed"
         }
     }
 }

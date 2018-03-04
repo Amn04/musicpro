@@ -23,6 +23,8 @@ Item {
             height: playerCtlBg.height;
             //anchors.verticalCenter: ctrlRow
             text: "\uf100"
+            fontcolor: "#f4c20d"
+            fontsize: 60
             onClicked: playerCtrl.clicked(playerCtrl.previousButton)
         }
 
@@ -32,6 +34,7 @@ Item {
             fontsize: 60
             height: playerCtlBg.height;
             text: "\uf144" //For Pause text: "\uf28b"
+            fontcolor: "#3cba54"
             onClicked: {
                 //TODO: This need to be in Sync with real player , for now okay
                 if(playpauseCtrl.text==="\uf144")
@@ -45,7 +48,18 @@ Item {
         ControlButton{
             width:playerCtlBg.width/5
             height: playerCtlBg.height;
+            text: "\uf04d"
+            fontcolor: "#db3236"
+            fontsize: 60 //stop
+            //onClicked: playerCtrl.clicked(playerCtrl.nextButton)
+        }
+
+        ControlButton{
+            width:playerCtlBg.width/5
+            height: playerCtlBg.height;
             text: "\uf101"
+            fontcolor: "#f4c20d"
+            fontsize: 60
             onClicked: playerCtrl.clicked(playerCtrl.nextButton)
         }
     }

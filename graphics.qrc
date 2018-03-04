@@ -4,5 +4,7 @@
         <file>resources/playCtl_Bg.png</file>
         <file>resources/title_bg.PNG</file>
         <file>resources/playlist_bg.jpg</file>
+        <file>resources/gogo.png</file>
+        <file>resources/no_albumart.png</file>
     </qresource>
 </RCC>

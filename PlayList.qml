@@ -29,8 +29,8 @@ Item {
 
                 Text {
                     //font.family: openSansFontRegular.name
-                    font.pixelSize: (playlistview.currentIndex==index)?16:12
-                    color:(playlistview.currentIndex==index)?"#FF5A09":"white"
+                    font.pixelSize: (playlistview.currentIndex==index)?12:12
+                    color:(playlistview.currentIndex==index)?"#3cba54":"white"
                     font.capitalization: (playlistview.currentIndex==index)?Font.AllUppercase:Font.AllLowercase
                     text: basename(source.toString())
                     //Function to get the basename from URL

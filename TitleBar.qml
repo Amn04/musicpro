@@ -17,22 +17,12 @@ Item {
     {
         anchors.fill: parent
         spacing: 2
-        Text {
-            id:staticText
-            width: parent.width/3
-            height:parent.height
-            text: ""
-            font.family:openSansFontRegular.name
-            font.capitalization: Font.AllUppercase
-            color:"white"
-            elide: Text.ElideMiddle
-            font.pointSize: 10
-        }
+
         Text {
             id:title
-            width: parent.width/2
+            width: parent.width/1.2
             height:parent.height
-            text: "GoGo"
+            text: "G  o  G  o "
             font.family:openSansFontRegular.name
             font.bold: true
             font.capitalization: Font.AllUppercase
@@ -49,6 +39,7 @@ Item {
             text: "\uf2d1"
             fontsize: 9
             fontcolor: "white"
+            hovercolor: "#FFBF00"
             onClicked: titleBar.minimizeMe()
         }
 
@@ -60,6 +51,7 @@ Item {
             text: "\uf410"
             fontsize: 9
             fontcolor: "white"
+            hovercolor: "#E32636"
             onClicked: titleBar.closeMe()
         }
 
