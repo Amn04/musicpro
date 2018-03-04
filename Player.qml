@@ -20,13 +20,13 @@ Rectangle {
         id:playEngine
 
         Component.onCompleted: {
-            playEngine.playerBackend.playbackStateChanged.connect(onBackendPlaybackStatusChanged)
+            playEngine.playbackChanged.connect(onBackendPlaybackStatusChanged)
             playEngine.playerBackend.positionChanged.connect(onBackEndPositionChanged)
             playEngine.newMediaStarted.connect(prepareForNewMedia)
         }
 
         Component.onDestruction: {
-            playEngine.playerBackend.playbackStateChanged.disconnect(onBackendPlaybackStatusChanged)
+            playEngine.playbackChanged.disconnect(onBackendPlaybackStatusChanged)
             playEngine.playerBackend.positionChanged.disconnect(onBackEndPositionChanged)
             playEngine.newMediaStarted.disconnect(prepareForNewMedia)
         }
@@ -40,8 +40,12 @@ Rectangle {
         }
 
         function onBackendPlaybackStatusChanged() {
-            if(playEngine.getPlaybackStatus()===playEngine.playing) { }
-            else if(playEngine.getPlaybackStatus()===playEngine.paused) { }
+            if(playEngine.getPlaybackStatus()===playEngine.playing) {
+                playControlObj.playPauseToggle=true
+            }
+            else if(playEngine.getPlaybackStatus()===playEngine.paused) {
+                playControlObj.playPauseToggle=false
+            }
             else if(playEngine.getPlaybackStatus()===playEngine.stopped) { }
             else { console.error("Unknown Playback Status") }
         }

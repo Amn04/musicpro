@@ -12,6 +12,7 @@ Item {
     property alias playerBackend: player
     property alias playlist: playlist
     signal newMediaStarted()
+    signal playbackChanged()
     Playlist
     {
         id:playlist;
@@ -33,7 +34,7 @@ Item {
             }
             else
             {
-              // console.log("Some Status Else" + player.title)
+                // console.log("Some Status Else" + player.title)
             }
 
         }
@@ -41,7 +42,7 @@ Item {
 
         onPlaybackStateChanged:
         {
-            console.log("playback status changed")
+            playEngine.playbackChanged()
         }
 
         Component.onCompleted:
@@ -66,7 +67,7 @@ Item {
 
     function getPlaybackStatus()
     {
-       return playEngine.playbackstatus;
+        return playEngine.playbackstatus;
     }
 
     function next()
@@ -88,17 +89,20 @@ Item {
     {
         player.play()
         playEngine.playbackstatus=playing
+        playEngine.playbackChanged()
     }
 
     function playAtIndex(index)
     {
-       playlist.currentIndex=index
+        playlist.currentIndex=index
+        playEngine.playbackChanged()
     }
 
     function pause()
     {
         player.pause()
         playEngine.playbackstatus=paused
+        playEngine.playbackChanged()
     }
 
     function clear()

@@ -7,6 +7,7 @@ Item {
     property int playPauseButton: 1
     property int nextButton: 2
     signal clicked(int buttonid)
+    property bool playPauseToggle:false
     Image {
         id: playerCtlBg
         source: "qrc:/graphics/resources/title_bg.PNG"
@@ -33,14 +34,9 @@ Item {
             width:playerCtlBg.width/3
             fontsize: 60
             height: playerCtlBg.height;
-            text: "\uf144" //For Pause text: "\uf28b"
+            text: !playPauseToggle?"\uf144":"\uf28b"
             fontcolor: "#3cba54"
             onClicked: {
-                //TODO: This need to be in Sync with real player , for now okay
-                if(playpauseCtrl.text==="\uf144")
-                    playpauseCtrl.text="\uf28b"
-                else
-                    playpauseCtrl.text="\uf144"
                 playerCtrl.clicked(playerCtrl.playPauseButton)
             }
         }
