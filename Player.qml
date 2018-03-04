@@ -45,18 +45,6 @@ Item {
         }
     }
 
-    BrowsePopup {
-        id:browsePopUp
-        visible: false;
-
-        Component.onCompleted: {
-            browsePopUp.listofSelectedFiles.connect(addFilesToPlayer)
-        }
-        function addFilesToPlayer(fileList) {
-            playEngine.addMultiple(fileList)
-        }
-    }
-
     Column {
         width: parent.width
         height: parent.height//-titleBar.height
@@ -119,12 +107,23 @@ Item {
             Component.onCompleted: {
                 optionCtrlObj.clicked.connect(onClickEvent)
             }
+
+            function addSongsFromArray(listOffiles)
+            {
+                for(var i = 0; i <listOffiles.length; i++) {
+                    console.log("Adding files"+listOffiles[i])
+                    playEngine.add(listOffiles[i])
+                }
+            }
+
             function onClickEvent(buttonId) {
                 if(buttonId===optionCtrlObj.browseFoldersButton) {
-                    //console.log("Browse Folders");
+                    var listOffilesFromFolder=backend.browseAllFilesFromFolder()
+                    addSongsFromArray(listOffilesFromFolder)
                 }
                 else if(buttonId===optionCtrlObj.browseFilesButton) {
-                    browsePopUp.selectFiles()
+                    var listOffiles=backend.browseFiles()
+                    addSongsFromArray(listOffiles)
                 }
                 else {
                     //do nothing , Future

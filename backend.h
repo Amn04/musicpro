@@ -14,8 +14,11 @@ public:
 
     QVariant  previousMediaList();
     void setPreviousMediaList(const QVariant& data);
+    Q_INVOKABLE QVariant browseFiles();
+    Q_INVOKABLE QVariant browseAllFilesFromFolder();
 
-
+protected:
+    QStringList getAllAudioFilesFromDirRecursively(QString dirName);
 private:
     QStringList m_previousMediaList;
 };
