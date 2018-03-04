@@ -6,9 +6,9 @@ Item {
     property int browseFoldersButton: 0
     property int browseFilesButton: 1
     signal clicked(int buttonid)
-    Rectangle {
+    Image {
         id: playerCtlBg
-        color:"black"
+        source: "qrc:/graphics/resources/title_bg.PNG"
         anchors.fill: parent;
     }
     Row

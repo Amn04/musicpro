@@ -44,14 +44,12 @@ Item {
             updateUIForNewPlayBack()
         }
     }
-
-
-
     PlayInfo {
         id:playbackInfo;
         anchors.top:parent.top
         anchors.left: parent.left
         anchors.right: parent.right
+        anchors.margins: 2;
         height: parent.height/6
     }
     PlayList {

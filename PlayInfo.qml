@@ -1,32 +1,20 @@
 import QtQuick 2.0
 
 Item {
-    Rectangle {
+    Image {
         id: playerCtlBg
-        color:"black"
+        source: "qrc:/graphics/resources/title_bg.PNG"
         anchors.fill: parent;
     }
 
     FontLoader { id: openSansFontRegular; source: "qrc:/font/resources/fonts/open-sans/OpenSans-Regular.ttf" }
 
     function setText(title,subTitle,album,artist) {
-        songTitleText.text=title?title:"No Titile"+" | "+subTitle?subTitle:"-"+" | "
-                                                                   +artist?artist:"Unknown Artist"+" | "+album?album:"Unknown Album" +" | "
+        songTitleText.text=title?title:"No Titile"
+        songSubTitleText.text=subTitle?subTitle:"-"
+        songArtistText.text=artist?artist:"Unknown Artist"
+        songAlbumText.text=album?album:"Unknown Album"
         titleAnimation.start()
-    }
-
-    NumberAnimation on x{
-        id:titleAnimation
-        target:songTitleText
-        from: songTitleText.width
-        to: -1*songTitleText.width
-        loops: Animation.Infinite
-        duration: 8000
-        Component.onCompleted: {
-            //just disabling by default
-            titleAnimation.stop()
-            songTitleText.x=0
-        }
     }
 
     Column
@@ -40,6 +28,18 @@ Item {
             font.capitalization: Font.AllUppercase
             color:"white"
             font.pointSize: 14
+            NumberAnimation on x{
+                id:titleAnimation
+                from: songTitleText.width
+                to: -1*songTitleText.width
+                loops: Animation.Infinite
+                duration: 8000
+                Component.onCompleted: {
+                    //just disabling by default
+                    titleAnimation.stop()
+                    songTitleText.x=0
+                }
+            }
         }
 
         Text {
@@ -48,6 +48,7 @@ Item {
             font.family:openSansFontRegular.name
             font.capitalization: Font.AllUppercase
             color:"white"
+            elide: Text.ElideMiddle
             font.pointSize: 10
         }
 
@@ -57,6 +58,7 @@ Item {
             font.family:openSansFontRegular.name
             font.capitalization: Font.AllUppercase
             color:"white"
+            elide: Text.ElideMiddle
             font.pointSize: 10
         }
 
@@ -66,6 +68,7 @@ Item {
             font.family:openSansFontRegular.name
             font.capitalization: Font.AllUppercase
             color:"white"
+            elide: Text.ElideMiddle
             font.pointSize: 10
         }
     }

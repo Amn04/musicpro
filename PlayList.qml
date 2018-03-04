@@ -7,9 +7,9 @@ Item {
     property alias listmodel:playlistview.model
     property alias currentIndex:playlistview.currentIndex
     signal clicked(int index)
-    Rectangle {
+    Image {
         id: playerCtlBg
-        color:"#393939"
+        source: "qrc:/graphics/resources/title_bg.PNG"
         anchors.fill: parent;
     }
     Component

@@ -7,14 +7,9 @@ Item {
     property int playPauseButton: 1
     property int nextButton: 2
     signal clicked(int buttonid)
-    /*Image {
+    Image {
         id: playerCtlBg
-        source: "qrc:/graphics/resources/playCtl_Bg.png"
-        anchors.fill: parent;
-    } */
-    Rectangle {
-        id: playerCtlBg
-        color:"black"
+        source: "qrc:/graphics/resources/title_bg.PNG"
         anchors.fill: parent;
     }
     Row
@@ -26,7 +21,7 @@ Item {
         ControlButton{
             width:playerCtlBg.width/5
             height: playerCtlBg.height;
-            anchors.verticalCenter: ctrlRow
+            //anchors.verticalCenter: ctrlRow
             text: "\uf100"
             onClicked: playerCtrl.clicked(playerCtrl.previousButton)
         }
