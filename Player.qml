@@ -25,6 +25,12 @@ Rectangle {
             playEngine.newMediaStarted.connect(prepareForNewMedia)
         }
 
+        Component.onDestruction: {
+            playEngine.playerBackend.playbackStateChanged.disconnect(onBackendPlaybackStatusChanged)
+            playEngine.playerBackend.positionChanged.disconnect(onBackEndPositionChanged)
+            playEngine.newMediaStarted.disconnect(prepareForNewMedia)
+        }
+
         function prepareForNewMedia() {
             metaDataFetcher.start()
         }
@@ -68,9 +74,10 @@ Rectangle {
         }
         function onClickEvent(index) {
             playEngine.playAtIndex(index)
+            //Lets Play now
+            playEngine.play()
         }
     }
-
     Column {
         id:controlContainer
         anchors.bottom: parent.bottom
@@ -78,12 +85,12 @@ Rectangle {
         anchors.left: parent.left
         anchors.margins: 4
         spacing: 2
+
         PlaySlider {
             id:playbackSlider
             width: parent.width
             height: 20
         }
-
         PlayControl {
             id:playControlObj
             width: parent.width
@@ -180,7 +187,7 @@ Rectangle {
                              , playEngine.playerBackend.metaData.subTitle
                              , playEngine.playerBackend.metaData.albumTitle
                              , playEngine.playerBackend.metaData.albumArtist)
-        console.log(playEngine.playerBackend.metaData.coverArtUrlLarge)
+        //console.log(playEngine.playerBackend.metaData.coverArtUrlLarge)
     }
 
 }
