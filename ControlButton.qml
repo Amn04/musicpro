@@ -7,6 +7,8 @@ Item
     //https://fontawesome.com/cheatsheet
     FontLoader { id: fontAwesome; source: "qrc:/font/resources/fonts/F_Awesome-5_Free-Solid-900.otf" }
     property alias text: ctrlButtontext.text
+    property int fontsize:30
+    property string fontcolor:"#05E9FF"
     signal clicked()
     Button
     {
@@ -30,11 +32,11 @@ Item
             id:ctrlButtontext;
             anchors.horizontalCenter: ctrlButton.horizontalCenter
             anchors.verticalCenter: ctrlButton.verticalCenter
-            font.pixelSize: 40
+            font.pixelSize: fontsize
             font.family: fontAwesome.name
             //color: ctrlButton.down ? "#17a81a" : "#21be2b"
             text: "\uf28b"
-            color: ctrlButton.pressed ?"white" : "#05E9FF"
+            color: ctrlButton.pressed ?"white" : fontcolor
         }
         onClicked: ctrlButtonContainer.clicked()
     }

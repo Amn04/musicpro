@@ -13,6 +13,12 @@ Item {
     property alias maxValue: innerSlider.maximumValue
     property alias minValue: innerSlider.minimumValue
     signal valueChanged()
+    Rectangle
+    {
+        color:"black"
+        anchors.fill: parent;
+    }
+
     Slider
     {
         anchors.fill: parent
@@ -21,9 +27,9 @@ Item {
         style: SliderStyle {
             handle: Rectangle {
                 anchors.centerIn: parent
-                color: control.pressed ? "black" : "#05E9FF"
+                color: control.pressed ? "#8C0095" : "#05E9FF"
                 border.color: "black"
-                border.width: 2
+                border.width: 1
                 implicitWidth: 14
                 implicitHeight: 14
                 radius: 1
@@ -35,9 +41,9 @@ Item {
                     start: Qt.point(0, control.height / 2)
                     end: Qt.point(control.width, control.height / 2)
                     gradient: Gradient {
-                        GradientStop { position: 0.0; color: "#05E9FF" }
-                        GradientStop { position: control.value; color: "#05E9FF" }
-                        GradientStop { position: 1.0; color: "#05E9FF" }
+                        GradientStop { position: 0.0; color: "#d4d4dc" }
+                        GradientStop { position: control.value; color: "#1d1e22" }
+                        GradientStop { position: 1.0; color: "#393f4d" }
                     }
                 }
             }

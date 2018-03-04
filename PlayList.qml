@@ -7,12 +7,17 @@ Item {
     property alias listmodel:playlistview.model
     property alias currentIndex:playlistview.currentIndex
     signal clicked(int index)
+    Rectangle {
+        id: playerCtlBg
+        color:"#393939"
+        anchors.fill: parent;
+    }
     Component
     {
         id:playListDelegate
         Rectangle {
             id: content
-            anchors { left: parent.left; right: parent.right }
+            anchors { left: parent.left; right: parent.right;margins: 2 }
             height: column.implicitHeight + 4
             color:"transparent"
             border.width: 1
@@ -23,9 +28,10 @@ Item {
                 anchors { fill: parent; margins: 2 }
 
                 Text {
-                    font.family: openSansFontRegular.name
-                    font.pixelSize: (playlistview.currentIndex==index)?12:10
-                    color:(playlistview.currentIndex==index)?"#05E9FF":"white"
+                    //font.family: openSansFontRegular.name
+                    font.pixelSize: (playlistview.currentIndex==index)?16:12
+                    color:(playlistview.currentIndex==index)?"#FF5A09":"white"
+                    font.capitalization: (playlistview.currentIndex==index)?Font.AllUppercase:Font.AllLowercase
                     text: basename(source.toString())
                     //Function to get the basename from URL
                     function basename(str)
@@ -37,7 +43,7 @@ Item {
                         anchors.fill: parent
                         onClicked:
                         {
-                            console.log("clicked: at index: " + index)
+                            //console.log("clicked: at index: " + index)
                             playlistview.currentIndex = index
                             playListControl.clicked(index)
                         }
@@ -53,9 +59,9 @@ Item {
         model:0
         delegate: playListDelegate
         ScrollBar.vertical: ScrollBar {}
-        onCurrentIndexChanged:
-        {
-            console.log("Curent Index changed : "+playlistview.currentIndex)
-        }
+//        onCurrentIndexChanged:
+//        {
+//            //console.log("Curent Index changed : "+playlistview.currentIndex)
+//        }
     }
 }

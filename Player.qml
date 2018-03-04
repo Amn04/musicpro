@@ -45,37 +45,46 @@ Item {
         }
     }
 
-    Column {
-        width: parent.width
-        height: parent.height//-titleBar.height
-        spacing: 2
-        PlayInfo {
-            id:playbackInfo;
-            width: parent.width
-            height: parent.height/6
-        }
-        PlayList {
-            id:playListObj
-            width: parent.width
-            height: parent.height/3
-            Component.onCompleted: {
-                playListObj.clicked.connect(onClickEvent)
-            }
-            function onClickEvent(index) {
-                playEngine.playAtIndex(index)
-            }
-        }
 
+
+    PlayInfo {
+        id:playbackInfo;
+        anchors.top:parent.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+        height: parent.height/6
+    }
+    PlayList {
+        id:playListObj
+        anchors.top: playbackInfo.bottom
+        anchors.bottom: controlContainer.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.margins: 2
+        Component.onCompleted: {
+            playListObj.clicked.connect(onClickEvent)
+        }
+        function onClickEvent(index) {
+            playEngine.playAtIndex(index)
+        }
+    }
+
+    Column {
+        id:controlContainer
+        anchors.bottom: parent.bottom
+        anchors.right: parent.right
+        anchors.left: parent.left
+        spacing: 2
         PlaySlider {
             id:playbackSlider
             width: parent.width
-            height: parent.height/10
+            height: 20
         }
 
         PlayControl {
             id:playControlObj
             width: parent.width
-            height: parent.height/5
+            height: 70
             Component.onCompleted: {
                 playControlObj.clicked.connect(onClickEvent)
             }
@@ -103,7 +112,7 @@ Item {
         OptionsBar {
             id:optionCtrlObj
             width: parent.width
-            height: parent.height/8
+            height: 50
             Component.onCompleted: {
                 optionCtrlObj.clicked.connect(onClickEvent)
             }

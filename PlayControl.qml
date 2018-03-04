@@ -7,9 +7,14 @@ Item {
     property int playPauseButton: 1
     property int nextButton: 2
     signal clicked(int buttonid)
-    Image {
+    /*Image {
         id: playerCtlBg
         source: "qrc:/graphics/resources/playCtl_Bg.png"
+        anchors.fill: parent;
+    } */
+    Rectangle {
+        id: playerCtlBg
+        color:"black"
         anchors.fill: parent;
     }
     Row
@@ -20,7 +25,8 @@ Item {
         spacing: 3;
         ControlButton{
             width:playerCtlBg.width/5
-            height: playerCtlBg.height/2;
+            height: playerCtlBg.height;
+            anchors.verticalCenter: ctrlRow
             text: "\uf100"
             onClicked: playerCtrl.clicked(playerCtrl.previousButton)
         }
@@ -28,7 +34,8 @@ Item {
         ControlButton{
             id:playpauseCtrl
             width:playerCtlBg.width/3
-            height: playerCtlBg.height/2;
+            fontsize: 60
+            height: playerCtlBg.height;
             text: "\uf144" //For Pause text: "\uf28b"
             onClicked: {
                 //TODO: This need to be in Sync with real player , for now okay
@@ -42,7 +49,7 @@ Item {
 
         ControlButton{
             width:playerCtlBg.width/5
-            height:playerCtlBg.height/2;
+            height: playerCtlBg.height;
             text: "\uf101"
             onClicked: playerCtrl.clicked(playerCtrl.nextButton)
         }
