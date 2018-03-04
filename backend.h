@@ -20,6 +20,7 @@ public:
 protected:
     QStringList getAllAudioFilesFromDirRecursively(QString dirName);
 private:
+    //TODO:Remove this !
     QStringList m_previousMediaList;
 };
 

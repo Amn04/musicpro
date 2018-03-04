@@ -15,8 +15,6 @@ QVariant BackEnd::browseAllFilesFromFolder()
 {
     QString dir = QFileDialog::getExistingDirectory(0, tr("Open Directory"),"/home",QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
     QStringList result=getAllAudioFilesFromDirRecursively(dir);
-    qDebug()<<"Selected Files";
-    qDebug()<<result;
     return QVariant::fromValue(result);
 }
 QStringList BackEnd::getAllAudioFilesFromDirRecursively(QString dirName)
