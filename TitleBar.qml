@@ -16,17 +16,19 @@ Item {
     Row
     {
         anchors.fill: parent
+        anchors.topMargin: 1
+        anchors.bottomMargin: 1
         spacing: 2
 
         Text {
             id:title
             width: parent.width/1.2
             height:parent.height
-            text: "G  o  G  o "
+            text: "GOGO Music Player"
             font.family:openSansFontRegular.name
             font.bold: true
             font.capitalization: Font.AllUppercase
-            color:"white"
+            color:"#DAA520"
             elide: Text.ElideMiddle
             font.pointSize: 10
         }
