@@ -11,12 +11,10 @@ Item
     property string fontcolor:"#05E9FF"
     property string hovercolor: "#3B444B"
     signal clicked()
-    Button
-    {
+    Button {
         id:ctrlButton;
         anchors.fill: parent;
-        background: Rectangle
-        {
+        background: Rectangle {
             id:buttonBGRect
             implicitWidth: 100
             implicitHeight: 25
@@ -26,20 +24,15 @@ Item
             color: ctrlButton.hovered ? hovercolor : "transparent"
         }
 
-        Text
-        {
+        Text {
             id:ctrlButtontext;
             anchors.horizontalCenter: ctrlButton.horizontalCenter
             anchors.verticalCenter: ctrlButton.verticalCenter
             font.pixelSize: fontsize
             font.family: fontAwesome.name
-            //color: ctrlButton.down ? "#17a81a" : "#21be2b"
             text: "\uf28b"
             color: ctrlButton.pressed ?"white" : fontcolor
         }
         onClicked: ctrlButtonContainer.clicked()
     }
 }
-
-
-

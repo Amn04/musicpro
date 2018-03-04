@@ -117,6 +117,9 @@ Rectangle {
                 else if(buttonId===playControlObj.nextButton) {
                     playEngine.next()
                 }
+                else if(buttonId===playControlObj.stopButton) {
+                    playEngine.stop()
+                }
                 else {
                     //do nothing , Future
                 }

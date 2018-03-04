@@ -6,6 +6,7 @@ Item {
     property int previousButton: 0
     property int playPauseButton: 1
     property int nextButton: 2
+    property int stopButton: 3
     signal clicked(int buttonid)
     property bool playPauseToggle:false
     Image {
@@ -47,7 +48,7 @@ Item {
             text: "\uf04d"
             fontcolor: "#db3236"
             fontsize: 60 //stop
-            //onClicked: playerCtrl.clicked(playerCtrl.nextButton)
+            onClicked: playerCtrl.clicked(playerCtrl.stopButton)
         }
 
         ControlButton{

@@ -13,111 +13,88 @@ Item {
     property alias playlist: playlist
     signal newMediaStarted()
     signal playbackChanged()
-    Playlist
-    {
+
+    Playlist {
         id:playlist;
     }
 
-    MediaPlayer
-    {
+    MediaPlayer {
         id:player;
         playlist: playlist
 
-
-        onStatusChanged:
-        {
-            //console.log("step 1 :"+player.status)
-            if(player.status==2) //TODO : Status sort hack
-            {
+        onStatusChanged:   {
+            if(player.status==2) {
                 playEngine.newMediaStarted()
-
             }
-            else
-            {
-                // console.log("Some Status Else" + player.title)
-            }
-
         }
 
-
-        onPlaybackStateChanged:
-        {
+        onPlaybackStateChanged: {
             playEngine.playbackChanged()
         }
 
-        Component.onCompleted:
-        {
-            Connections
-            {
+        Component.onCompleted: {
+            Connections {
                 target:playEngine.player
-
             }
         }
     }
 
-    function getPlayListItems()
-    {
+    function getPlayListItems() {
         var listOfFiles=[]
-        console.log("Playlist Count "+playlist.itemCount)
         for(var i = 0; i < playlist.itemCount; i++) {
             listOfFiles.push(playlist.itemSource(i))
         }
         return listOfFiles
     }
 
-    function getPlaybackStatus()
-    {
+    function getPlaybackStatus() {
         return playEngine.playbackstatus;
     }
 
-    function next()
-    {
+    function next() {
         playlist.next()
     }
 
-    function previous()
-    {
+    function previous() {
         playlist.previous()
     }
 
-    function getCurrentIndex()
-    {
+    function getCurrentIndex() {
         return playlist.currentIndex
     }
 
-    function play()
-    {
+    function play() {
         player.play()
         playEngine.playbackstatus=playing
         playEngine.playbackChanged()
     }
 
-    function playAtIndex(index)
-    {
+    function playAtIndex(index) {
         playlist.currentIndex=index
         playEngine.playbackChanged()
     }
 
-    function pause()
-    {
+    function pause() {
         player.pause()
         playEngine.playbackstatus=paused
         playEngine.playbackChanged()
     }
 
-    function clear()
-    {
+    function stop() {
+        player.stop()
+        playEngine.playbackstatus=stopped
+        playEngine.playbackChanged()
+    }
+
+    function clear() {
         playlist.clear()
     }
 
-    function add(fileUrl)
-    {
+    function add(fileUrl) {
         playlist.addItem(fileUrl)
     }
 
-    function addMultiple(fileUrls)
-    {
+    function addMultiple(fileUrls) {
         playlist.addItems(fileUrls)
     }
-
 }

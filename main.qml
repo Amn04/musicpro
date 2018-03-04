@@ -5,7 +5,7 @@ Window {
     id:rootWindow
 
     property variant clickPos: "1,1"
-    MouseArea     {
+    MouseArea {
         anchors.fill: parent
         onPressed: {
             clickPos  = Qt.point(mouse.x,mouse.y)
@@ -21,40 +21,30 @@ Window {
     width: 320
     height: 480
     title: qsTr("GoGo Music Player V1.0")
-    //TODO: Check flags later
-    //flags:
     flags: Qt.Window | Qt.FramelessWindowHint
     minimumHeight: height
     minimumWidth: width
     maximumHeight: minimumHeight
     maximumWidth: minimumWidth
 
-    Column
-    {
+    Column {
         anchors.fill: parent
-        TitleBar
-        {
+        TitleBar {
             id:titleBar
             width:rootWindow.width
             height:20
 
-            onMinimizeMe:
-            {
+            onMinimizeMe: {
                 rootWindow.showMinimized()
             }
-            onCloseMe:
-            {
+            onCloseMe: {
                 rootWindow.close()
             }
         }
 
-        Player
-        {
+        Player {
             width:rootWindow.width
             height: rootWindow.height-titleBar.height
         }
     }
-
-
-
 }
