@@ -3,15 +3,16 @@ import QtQuick.Controls 2.0
 
 Item {
     id:playListControl
-    FontLoader { id: openSansFontRegular; source: "qrc:/font/resources/fonts/open-sans/OpenSans-Regular.ttf" }
+   // FontLoader { id: openSansFontRegular; source: "qrc:/font/resources/fonts/open-sans/OpenSans-Regular.ttf" }
     property alias listmodel:playlistview.model
     property alias currentIndex:playlistview.currentIndex
     signal clicked(int index)
-    Image {
-        id: playerCtlBg
-        source: "qrc:/graphics/resources/title_bg.PNG"
-        anchors.fill: parent;
-    }
+   // property var currentname: songnmameinlist.text
+//    Image {
+//        id: playerCtlBg
+//        source: "qrc:/graphics/resources/title_bg.PNG"
+//        anchors.fill: parent;
+//    }
     Component
     {
         id:playListDelegate
@@ -28,15 +29,20 @@ Item {
                 anchors { fill: parent; margins: 2 }
 
                 Text {
+                    id:songnmameinlist
                     //font.family: openSansFontRegular.name
-                    font.pixelSize: (playlistview.currentIndex==index)?12:12
+                    height: 50
+                    font.pointSize: 12
                     color:(playlistview.currentIndex==index)?"#3cba54":"white"
-                    font.capitalization: Font.AllUppercase//(playlistview.currentIndex==index)?Font.AllUppercase:Font.AllLowercase
                     text: basename(source.toString())
                     //Function to get the basename from URL
                     function basename(str)
                     {
-                        return (str.slice(str.lastIndexOf("/")+1))
+                        var toreturn
+                        toreturn=(str.slice(str.lastIndexOf("/")+1))
+                        toreturn=toreturn.slice(0,-4)      //to remove extension
+                        //console.log(toreturn)
+                        return toreturn
                     }
                     MouseArea
                     {

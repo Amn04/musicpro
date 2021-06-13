@@ -33,7 +33,7 @@ Item {
         }
 
         Component.onCompleted: {
-            Connections {
+            Connections, {
                 target:playEngine.player
             }
         }

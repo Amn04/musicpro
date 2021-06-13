@@ -18,7 +18,21 @@ Item {
         color:"black"
         anchors.fill: parent;
     }
+    function msToTime(duration) {              //function to convert int to time
+        var seconds= parseInt((duration/1000)%60);
+        var minutes= parseInt((duration/(1000*60))%60);
+        minutes= minutes<10 ? "0"+minutes : minutes;
+        seconds= seconds<10 ? "0"+seconds : seconds;
+        return minutes+":"+seconds;
+    }
+       Text {
+           id: currentTime                       //text to show current duration
+           text: msToTime(playEngine.playerBackend.position)? msToTime(playEngine.playerBackend.position) : "00:00"
+           color: "white"
+           anchors.right: parent.left
+           anchors.rightMargin: 7
 
+   }
     Slider
     {
         anchors.fill: parent
@@ -54,4 +68,12 @@ Item {
             sliderObj.valueChanged()
         }
     }
+    Text {
+        id: totalTime                  //text to show total duration
+        text: msToTime(playEngine.playerBackend.duration)? msToTime(playEngine.playerBackend.duration) : "00:00"
+        color: "white"
+        anchors.left: parent.right
+        anchors.leftMargin: 7
+}
+
 }

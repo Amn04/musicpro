@@ -14,26 +14,27 @@ Item {
         source: "qrc:/graphics/resources/title_bg.PNG"
         anchors.fill: parent;
     }
+
     Row
     {
         id:ctrlRow
         anchors.horizontalCenter: playerCtlBg.horizontalCenter
         anchors.verticalCenter: playerCtlBg.verticalCenter
-        spacing: 3;
+
         ControlButton{
-            width:playerCtlBg.width/5
+            width:50
             height: playerCtlBg.height;
             //anchors.verticalCenter: ctrlRow
             text: "\uf100"
             fontcolor: "#f4c20d"
-            fontsize: 60
-            onClicked: playerCtrl.clicked(playerCtrl.previousButton)
+            fontsize: 24
+            onClicked: playEngine.previous()//playerCtrl.clicked(playerCtrl.previousButton)
         }
 
         ControlButton{
             id:playpauseCtrl
-            width:playerCtlBg.width/3
-            fontsize: 60
+            width:50
+            fontsize: 24
             height: playerCtlBg.height;
             text: !playPauseToggle?"\uf144":"\uf28b"
             fontcolor: "#3cba54"
@@ -43,22 +44,23 @@ Item {
         }
 
         ControlButton{
-            width:playerCtlBg.width/5
+            width:50
             height: playerCtlBg.height;
             text: "\uf04d"
             fontcolor: "#db3236"
-            fontsize: 60 //stop
+            fontsize: 24 //stop
             onClicked: playerCtrl.clicked(playerCtrl.stopButton)
         }
 
         ControlButton{
-            width:playerCtlBg.width/5
+            width:50
             height: playerCtlBg.height;
             text: "\uf101"
             fontcolor: "#f4c20d"
-            fontsize: 60
-            onClicked: playerCtrl.clicked(playerCtrl.nextButton)
+            fontsize: 24
+            onClicked: playEngine.next()//playerCtrl.clicked(playerCtrl.nextButton)
         }
+
     }
 }
 

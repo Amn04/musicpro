@@ -7,7 +7,6 @@
         <file>PlayList.qml</file>
         <file>ControlButton.qml</file>
         <file>OptionsBar.qml</file>
-        <file>TitleBar.qml</file>
         <file>Engine.qml</file>
         <file>PlaySlider.qml</file>
     </qresource>

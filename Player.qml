@@ -5,7 +5,7 @@ import io.qt.examples.backend 1.0
 //TODO: Implement Seek
 //Control Button Sync with Event
 
-Rectangle {
+Rectangle {                    //arranged all componet of frontend main page in this rectangle.
     id:playerMainObj
     border.width: 10
     border.color: "grey"
@@ -58,21 +58,45 @@ Rectangle {
             updateUIForNewPlayBack()
         }
     }
-    PlayInfo {
-        id:playbackInfo;
-        anchors.top:parent.top
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.margins: 2;
-        height: parent.height/6
+
+    OptionsBar {
+        id:optionCtrlObj
+        width: parent.width
+        height: 50
+        Component.onCompleted: {
+            optionCtrlObj.clicked.connect(onClickEvent)
+        }
+
+        function addSongsFromArray(listOffiles)
+        {
+            for(var i = 0; i <listOffiles.length; i++) {
+                console.log("Adding files"+listOffiles[i])
+                playEngine.add(listOffiles[i])
+            }
+        }
+
+        function onClickEvent(buttonId) {
+            if(buttonId===optionCtrlObj.browseFoldersButton) {
+                var listOffilesFromFolder=backend.browseAllFilesFromFolder()
+                addSongsFromArray(listOffilesFromFolder)
+            }
+            else if(buttonId===optionCtrlObj.browseFilesButton) {
+                var listOffiles=backend.browseFiles()
+                addSongsFromArray(listOffiles)
+            }
+            else {
+                //do nothing , Future
+            }
+        }
     }
     PlayList {
         id:playListObj
-        anchors.top: playbackInfo.bottom
+        anchors.top:optionCtrlObj.bottom
         anchors.bottom: controlContainer.top
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.margins: 2
+
         Component.onCompleted: {
             playListObj.clicked.connect(onClickEvent)
         }
@@ -90,15 +114,15 @@ Rectangle {
         anchors.margins: 4
         spacing: 2
 
-        PlaySlider {
-            id:playbackSlider
+        PlayInfo {
+            id:playbackInfo;
             width: parent.width
-            height: 20
+            height:50
         }
         PlayControl {
             id:playControlObj
             width: parent.width
-            height: 70
+            height: 50
             Component.onCompleted: {
                 playControlObj.clicked.connect(onClickEvent)
             }
@@ -125,36 +149,11 @@ Rectangle {
                 }
             }
         }
-
-        OptionsBar {
-            id:optionCtrlObj
-            width: parent.width
-            height: 50
-            Component.onCompleted: {
-                optionCtrlObj.clicked.connect(onClickEvent)
-            }
-
-            function addSongsFromArray(listOffiles)
-            {
-                for(var i = 0; i <listOffiles.length; i++) {
-                    console.log("Adding files"+listOffiles[i])
-                    playEngine.add(listOffiles[i])
-                }
-            }
-
-            function onClickEvent(buttonId) {
-                if(buttonId===optionCtrlObj.browseFoldersButton) {
-                    var listOffilesFromFolder=backend.browseAllFilesFromFolder()
-                    addSongsFromArray(listOffilesFromFolder)
-                }
-                else if(buttonId===optionCtrlObj.browseFilesButton) {
-                    var listOffiles=backend.browseFiles()
-                    addSongsFromArray(listOffiles)
-                }
-                else {
-                    //do nothing , Future
-                }
-            }
+        PlaySlider {
+            id:playbackSlider
+            width:400
+            anchors.horizontalCenter: parent.horizontalCenter
+            height: 30
         }
     }
 
@@ -190,10 +189,10 @@ Rectangle {
         playbackSlider.maxValue=playEngine.playerBackend.duration
         playbackSlider.minValue=0
         playbackSlider.currentValue=playEngine.playerBackend.position
-        playbackInfo.setText(playEngine.playerBackend.metaData.title
-                             , playEngine.playerBackend.metaData.subTitle
-                             , playEngine.playerBackend.metaData.albumTitle
-                             , playEngine.playerBackend.metaData.albumArtist)
+//        playbackInfo.setText(playEngine.playerBackend.metaData.title
+//                             , playEngine.playerBackend.metaData.subTitle
+//                             , playEngine.playerBackend.metaData.albumTitle
+//                             , playEngine.playerBackend.metaData.albumArtist)
         //console.log(playEngine.playerBackend.metaData.coverArtUrlLarge)
     }
 

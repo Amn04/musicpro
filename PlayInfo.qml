@@ -1,4 +1,6 @@
+
 import QtQuick 2.0
+import QtQuick.Controls 2.0
 
 Item {
     Image {
@@ -7,15 +9,7 @@ Item {
         anchors.fill: parent;
     }
 
-    FontLoader { id: openSansFontRegular; source: "qrc:/font/resources/fonts/open-sans/OpenSans-Regular.ttf" }
-
-    function setText(title,subTitle,album,artist) {
-        songTitleText.text=title?title:"Unknown Title"
-        songSubTitleText.text=subTitle?subTitle:"-"
-        songArtistText.text=artist?artist:"-"
-        songAlbumText.text=album?album:"-"
-        titleAnimation.start()
-    }
+    //FontLoader { id: openSansFontRegular; source: "qrc:/font/resources/fonts/open-sans/OpenSans-Regular.ttf" }
 
     Column
     {
@@ -23,53 +17,47 @@ Item {
         Text {
             id:songTitleText
             width:parent.width
-            text: "-"
-            font.family:openSansFontRegular.name
-            font.capitalization: Font.AllUppercase
+            text: namereduce(playEngine.playlist.currentItemSource.toString())
             color:"white"
-            font.pointSize: 14
-            NumberAnimation on x{
-                id:titleAnimation
-                from: songTitleText.width
-                to: -1*songTitleText.width
-                loops: Animation.Infinite
-                duration: 8000
-                Component.onCompleted: {
-                    //just disabling by default
-                    titleAnimation.stop()
-                    songTitleText.x=0
-                }
+            font.pointSize: 11
             }
         }
-
-        Text {
-            id:songSubTitleText
-            text: "Unknown"
-            font.family:openSansFontRegular.name
-            font.capitalization: Font.AllUppercase
-            color:"white"
-            elide: Text.ElideMiddle
-            font.pointSize: 10
-        }
-
-        Text {
-            id:songAlbumText
-            text: "Unknown Album"
-            font.family:openSansFontRegular.name
-            font.capitalization: Font.AllUppercase
-            color:"white"
-            elide: Text.ElideMiddle
-            font.pointSize: 12
-        }
-
-        Text {
-            id:songArtistText
-            text: "Unknown Artist"
-            font.family:openSansFontRegular.name
-            font.capitalization: Font.AllUppercase
-            color:"white"
-            elide: Text.ElideMiddle
-            font.pointSize: 12
-        }
+    function namereduce(abc)
+    {
+        var back
+        back=(abc.slice(abc.lastIndexOf("/")+1))
+        back=back.slice(0,-4)      //to remove extension
+        //console.log(toreturn)
+        return back
     }
-}
+//        Text {
+//            id:songSubTitleText
+//            text: "Unknown"
+//            font.family:openSansFontRegular.name
+//            font.capitalization: Font.AllUppercase
+//            color:"white"
+//            elide: Text.ElideMiddle
+//            font.pointSize: 10
+//        }
+
+//        Text {
+//            id:songAlbumText
+//            text: "Unknown Album"
+//            font.family:openSansFontRegular.name
+//            font.capitalization: Font.AllUppercase
+//            color:"white"
+//            elide: Text.ElideMiddle
+//            font.pointSize: 12
+//        }
+
+//        Text {
+//            id:songArtistText
+//            text: "Unknown Artist"
+//            font.family:openSansFontRegular.name
+//            font.capitalization: Font.AllUppercase
+//            color:"white"
+//            elide: Text.ElideMiddle
+//            font.pointSize: 12
+//        }
+    }
+
