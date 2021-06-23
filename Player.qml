@@ -7,13 +7,14 @@ import io.qt.examples.backend 1.0
 
 Rectangle {                    //arranged all componet of frontend main page in this rectangle.
     id:playerMainObj
-    border.width: 10
-    border.color: "grey"
+//    border.width: 10
+//    border.color: "grey"
     Image {
         id: playerBg
-        source: "qrc:/graphics/resources/background.png"
+        source: "qrc:/graphics/resources/main.png"
+        //fillMode: Image.PreserveAspectFit
         anchors.fill: parent
-        anchors.margins: 4
+        opacity: 1
     }
 
     Engine {
@@ -61,8 +62,13 @@ Rectangle {                    //arranged all componet of frontend main page in 
 
     OptionsBar {
         id:optionCtrlObj
-        width: parent.width
-        height: 50
+        width: 40
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        anchors.right: playListObj.left
+        anchors.left: parent.left
+        height: 20
+        anchors.rightMargin: 20
         Component.onCompleted: {
             optionCtrlObj.clicked.connect(onClickEvent)
         }
@@ -91,9 +97,11 @@ Rectangle {                    //arranged all componet of frontend main page in 
     }
     PlayList {
         id:playListObj
-        anchors.top:optionCtrlObj.bottom
+        anchors.top:parent.top
         anchors.bottom: controlContainer.top
-        anchors.left: parent.left
+        anchors.bottomMargin: 18
+        anchors.left: optionCtrlObj.right
+        anchors.leftMargin: 20
         anchors.right: parent.right
         anchors.margins: 2
 
@@ -106,18 +114,21 @@ Rectangle {                    //arranged all componet of frontend main page in 
             playEngine.play()
         }
     }
+
     Column {
         id:controlContainer
         anchors.bottom: parent.bottom
+        anchors.topMargin: 12
         anchors.right: parent.right
         anchors.left: parent.left
         anchors.margins: 4
         spacing: 2
-
         PlayInfo {
             id:playbackInfo;
-            width: parent.width
+            width: 500
             height:50
+            anchors.horizontalCenter: parent.horizontalCenter
+           // anchors.verticalCenter: parent.verticalCenter
         }
         PlayControl {
             id:playControlObj

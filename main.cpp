@@ -9,8 +9,8 @@ int main(int argc, char *argv[])
 {
     //QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QApplication  app(argc, argv);
-    app.setOrganizationName("Gogo");
-    app.setOrganizationDomain("karthagokul");
+    app.setOrganizationName("MusicPro");
+    app.setOrganizationDomain("aman");
     app.setApplicationName("Music Player");
     app.setWindowIcon(QIcon("qrc:/graphics/resources/gogo.png"));
 

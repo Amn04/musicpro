@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.0
 //Dangerous to bring in old stuff
-import QtQuick.Controls 1.0
+//import QtQuick.Controls 1.0
 import QtQuick.Controls.Styles 1.0
 import QtGraphicalEffects 1.0
 
@@ -10,12 +10,12 @@ import QtGraphicalEffects 1.0
 Item {
     id:sliderObj
     property alias currentValue: innerSlider.value
-    property alias maxValue: innerSlider.maximumValue
-    property alias minValue: innerSlider.minimumValue
+    property alias maxValue: innerSlider.to
+    property alias minValue: innerSlider.from
     signal valueChanged()
     Rectangle
     {
-        color:"black"
+        color:"transparent"
         anchors.fill: parent;
     }
     function msToTime(duration) {              //function to convert int to time
@@ -37,8 +37,8 @@ Item {
     {
         anchors.fill: parent
         id:innerSlider
-        minimumValue: 0
-        style: SliderStyle {
+        from: 0
+         SliderStyle {
             handle: Rectangle {
                 anchors.centerIn: parent
                 color: control.pressed ? "black" : "black"
@@ -66,6 +66,28 @@ Item {
         onValueChanged:
         {
             sliderObj.valueChanged()
+        }
+        onMoved: {                       //used to gert real time value of slider
+            if(pressed) {
+                moveSlider()
+            }
+        }
+
+        function moveSlider() {
+            if(typeof moveSlider.i == "undefined") {
+                moveSlider.i=0
+            }
+            if(moveSlider.i%2==0)  {
+                if(playEngine.playerBackend.seekable) {
+                    playEngine.playerBackend.seek(parseInt(value))
+
+                }
+                else {
+                    value=playEngine.playerBackend.position
+                }
+            }
+
+            moveSlider.i++
         }
     }
     Text {

@@ -97,4 +97,7 @@ Item {
     function addMultiple(fileUrls) {
         playlist.addItems(fileUrls)
     }
+    function shuffle(){
+        playlist.shuffle()
+    }
 }

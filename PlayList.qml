@@ -20,10 +20,11 @@ Item {
             id: content
             anchors { left: parent.left; right: parent.right;margins: 2 }
             height: column.implicitHeight + 4
-            color:"transparent"
+            color:  listMA.containsMouse? "orange" : "transparent"
             border.width: 1
-            border.color: "grey"
-            radius: 2
+            anchors.leftMargin: 40
+            //border.color: "grey"
+            radius: 20
             Column {
                 id: column
                 anchors { fill: parent; margins: 2 }
@@ -44,16 +45,20 @@ Item {
                         //console.log(toreturn)
                         return toreturn
                     }
-                    MouseArea
-                    {
-                        anchors.fill: parent
-                        onClicked:
-                        {
-                            //console.log("clicked: at index: " + index)
-                            playlistview.currentIndex = index
-                            playListControl.clicked(index)
-                        }
-                    }
+
+                }
+
+            }
+            MouseArea
+            {
+                id:listMA
+                anchors.fill: parent
+                hoverEnabled: true
+                onClicked:
+                {
+                    //console.log("clicked: at index: " + index)
+                    playlistview.currentIndex = index
+                    playListControl.clicked(index)
                 }
             }
         }
@@ -64,6 +69,17 @@ Item {
         width: parent.width; height: parent.height
         model:0
         delegate: playListDelegate
+        states: [
+
+            State {
+                name: "hovered"
+                when:listMA.containsMouse
+               // when: mouseHandle.containsMouse && songslist.currentIndex!=index
+                PropertyChanges {
+                    target: playListDelegate
+                }
+            }
+        ]
         ScrollBar.vertical: ScrollBar {}
 //        onCurrentIndexChanged:
 //        {

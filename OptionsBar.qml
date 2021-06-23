@@ -9,50 +9,138 @@ Item {
     signal clicked(int buttonid)
     Image {
         id: playerCtlBg
-        source: "qrc:/graphics/resources/title_bg.PNG"
+        source: "qrc:/graphics/resources/white.png"
         anchors.fill: parent;
+        opacity: 0
     }
-    Row
+    Column
     {
         id:ctrlRow
-        anchors.horizontalCenter: playerCtlBg.horizontalCenter
-        anchors.verticalCenter: playerCtlBg.verticalCenter
+//        anchors.horizontalCenter: playerCtlBg.horizontalCenter
+//        anchors.verticalCenter: playerCtlBg.verticalCenter
         spacing: 3;
 
-        ControlButton{
-            width:playerCtlBg.width/7
-            height: playerCtlBg.height;
+        Button{
+            id:folderbt
+            width:70
+            height: 70
+            anchors.rightMargin: 20
             text: "\uf07c"
-            fontcolor: "#4885ed"
+           // fontcolor: "#4885ed"
+            background: Rectangle{
+               // color:"white"
+                Image {
+                    source: "qrc:/graphics/resources/add-folder.png"
+                    anchors.fill: parent
+                }
+                border.color: "grey"
+                border.width: 0.98
+                radius: 19
+                color: folderbt.hovered ? "orange" : "transparent"
+            }
             onClicked: optionsControl.clicked(optionsControl.browseFoldersButton)
         }
 
-        ControlButton{
-            width:playerCtlBg.width/7
-            height: playerCtlBg.height;
+       Button{
+           id:filebt
+            width:70
+            height:70
+            anchors.rightMargin: 20
             text: "\uf1c7"
-            fontcolor: "#4885ed"
+            //fontcolor: "#4885ed"
+            background: Rectangle{
+               // color:"white"
+                border.color: "grey"
+                Image {
+                    source: "qrc:/graphics/resources/video-file.png"
+                    anchors.fill: parent
+                }
+                border.width: 0.98
+                radius: 19
+                color: filebt.hovered ? "orange" : "transparent"
+            }
             onClicked: optionsControl.clicked(optionsControl.browseFilesButton)
         }
 
-        ControlButton{
-            width:playerCtlBg.width/7
-            height:playerCtlBg.height;
-            text: "\uf044"
-            fontcolor: "#4885ed"
-        }
-        ControlButton{
-            width:playerCtlBg.width/7
-            height:playerCtlBg.height;
+//        Button{
+//            id:writebt
+//            width:playerCtlBg.width/7
+//            height:playerCtlBg.height;
+//            text: "\uf044"
+//            background: Rectangle{
+//               // color:"white"
+//                border.color: "grey"
+//                border.width: 0.98
+//                radius: 19
+//                color: writebt.hovered ? "orange" : "transparent"
+//            }
+//            //fontcolor: "#4885ed"
+//        }
+       Button{
+           id:soundbt
+            width:70
+            height:70
+            anchors.rightMargin: 20
             text: "\uf028" //mute f026
-            fontcolor: "#4885ed"
+            background: Rectangle{
+               // color:"white"
+                border.color: "grey"
+                Image {
+                    source: "qrc:/graphics/resources/volume-button.png"
+                    anchors.fill: parent
+                }
+                border.width: 0.98
+                radius: 19
+                color: soundbt.hovered ? "orange" : "transparent"
+            }
+            //fontcolor: "#4885ed"
         }
 
-        ControlButton{
-            width:playerCtlBg.width/7
-            height:playerCtlBg.height;
+        Button{
+            id:settingbt
+            width:70
+            height:70
             text: "\uf013"
-            fontcolor: "#4885ed"
+            anchors.rightMargin: 20
+            background: Rectangle{
+               // color:"white"
+                border.color: "grey"
+                Image {
+                    source: "qrc:/graphics/resources/settings.png"
+                    anchors.fill: parent
+                }
+                border.width: 0.98
+                radius: 19
+                color: settingbt.hovered ? "orange" : "transparent"
+            }
+            //fontcolor: "#4885ed"
+        }
+        Button{
+            id:radiobt
+            width:70
+            height:70
+            text: "\uf013"
+            anchors.rightMargin: 20
+            background: Rectangle{
+               // color:"white"
+                border.color: "grey"
+                Image {
+                    source: "qrc:/graphics/resources/radio.png"
+                    anchors.fill: parent
+                }
+                border.width: 0.98
+                radius: 19
+                color: radiobt.hovered ? "orange" : "transparent"
+            }
+            MouseArea{
+                id:radioma
+                anchors.fill: parent
+                onClicked: {
+
+                }
+            }
+
+            //fontcolor: "#4885ed"
         }
     }
 }

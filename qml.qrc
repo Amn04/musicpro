@@ -9,5 +9,6 @@
         <file>OptionsBar.qml</file>
         <file>Engine.qml</file>
         <file>PlaySlider.qml</file>
+        <file>webradio.qml</file>
     </qresource>
 </RCC>

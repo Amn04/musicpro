@@ -1,10 +1,25 @@
 <RCC>
     <qresource prefix="/graphics">
-        <file>resources/background.png</file>
         <file>resources/playCtl_Bg.png</file>
         <file>resources/title_bg.PNG</file>
         <file>resources/playlist_bg.jpg</file>
         <file>resources/gogo.png</file>
         <file>resources/no_albumart.png</file>
+        <file>resources/newbgmainrect.png</file>
+        <file>resources/white.png</file>
+        <file>resources/background.png</file>
+        <file>resources/pause.png</file>
+        <file>resources/play-and-pause-button.png</file>
+        <file>resources/play-button.png</file>
+        <file>resources/previous-track-button.png</file>
+        <file>resources/settings.png</file>
+        <file>resources/video-file.png</file>
+        <file>resources/volume-button.png</file>
+        <file>resources/rewind-button.png</file>
+        <file>resources/right-arrow.png</file>
+        <file>resources/main.png</file>
+        <file>resources/add-folder.png</file>
+        <file>resources/shuffle.png</file>
+        <file>resources/radio.png</file>
     </qresource>
 </RCC>
