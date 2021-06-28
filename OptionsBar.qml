@@ -136,7 +136,40 @@ Item {
                 id:radioma
                 anchors.fill: parent
                 onClicked: {
+                      listingvisible= listingvisible?false:true
+                     offlinevisible=offlinevisible?false:true
+                    listingobj.radiovisible=true
+                      listingobj.streamervisible=false
+                }
+            }
 
+            //fontcolor: "#4885ed"
+        }
+        Button{
+            id:streambt
+            width:70
+            height:70
+            text: "\uf013"
+            anchors.rightMargin: 20
+            background: Rectangle{
+               // color:"white"
+                border.color: "grey"
+                Image {
+                    source: "qrc:/graphics/resources/radio.png"
+                    anchors.fill: parent
+                }
+                border.width: 0.98
+                radius: 19
+                color: streambt.hovered ? "orange" : "transparent"
+            }
+            MouseArea{
+                id:streamMA
+                anchors.fill: parent
+                onClicked: {
+                      listingvisible= listingvisible?false:true
+                     offlinevisible=offlinevisible?false:true
+                    listingobj.radiovisible=false
+                    listingobj.streamervisible=true
                 }
             }
 

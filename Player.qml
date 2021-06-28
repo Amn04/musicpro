@@ -9,12 +9,15 @@ Rectangle {                    //arranged all componet of frontend main page in 
     id:playerMainObj
 //    border.width: 10
 //    border.color: "grey"
+    property bool offlinevisible  : true
+    property bool  listingvisible: false
     Image {
         id: playerBg
-        source: "qrc:/graphics/resources/main.png"
+        source: "qrc:/graphics/resources/bkg.png"
+         fillMode: Image.PreserveAspectCrop
         //fillMode: Image.PreserveAspectFit
-        anchors.fill: parent
-        opacity: 1
+         anchors.fill: parent
+        opacity: 0.8
     }
 
     Engine {
@@ -95,6 +98,17 @@ Rectangle {                    //arranged all componet of frontend main page in 
             }
         }
     }
+    Listing{
+        id:listingobj
+        anchors.top:parent.top
+        anchors.bottom: parent.bottom
+        anchors.left: optionCtrlObj.right
+        anchors.leftMargin: 60
+        anchors.right: parent.right
+        anchors.margins: 2
+        visible: listingvisible
+    }
+
     PlayList {
         id:playListObj
         anchors.top:parent.top
@@ -104,7 +118,7 @@ Rectangle {                    //arranged all componet of frontend main page in 
         anchors.leftMargin: 20
         anchors.right: parent.right
         anchors.margins: 2
-
+        visible: offlinevisible
         Component.onCompleted: {
             playListObj.clicked.connect(onClickEvent)
         }
@@ -123,6 +137,7 @@ Rectangle {                    //arranged all componet of frontend main page in 
         anchors.left: parent.left
         anchors.margins: 4
         spacing: 2
+        visible: offlinevisible
         PlayInfo {
             id:playbackInfo;
             width: 500

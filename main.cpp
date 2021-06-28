@@ -3,11 +3,13 @@
 #include <QFontDatabase>
 #include <QDebug>
 #include <QIcon>
+#include <QtWebView/QtWebView>
 #include "backend.h"
 
 int main(int argc, char *argv[])
 {
     //QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QtWebView::initialize();
     QApplication  app(argc, argv);
     app.setOrganizationName("MusicPro");
     app.setOrganizationDomain("aman");

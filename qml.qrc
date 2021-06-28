@@ -9,6 +9,9 @@
         <file>OptionsBar.qml</file>
         <file>Engine.qml</file>
         <file>PlaySlider.qml</file>
-        <file>webradio.qml</file>
+        <file>Website.qml</file>
+        <file>Listing.qml</file>
+        <file>Radiolist.qml</file>
+        <file>Streamerlist.qml</file>
     </qresource>
 </RCC>

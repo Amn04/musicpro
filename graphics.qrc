@@ -17,9 +17,9 @@
         <file>resources/volume-button.png</file>
         <file>resources/rewind-button.png</file>
         <file>resources/right-arrow.png</file>
-        <file>resources/main.png</file>
         <file>resources/add-folder.png</file>
         <file>resources/shuffle.png</file>
         <file>resources/radio.png</file>
+        <file>resources/bkg.png</file>
     </qresource>
 </RCC>
