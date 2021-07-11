@@ -6,7 +6,6 @@
         <file>resources/gogo.png</file>
         <file>resources/no_albumart.png</file>
         <file>resources/newbgmainrect.png</file>
-        <file>resources/white.png</file>
         <file>resources/background.png</file>
         <file>resources/pause.png</file>
         <file>resources/play-and-pause-button.png</file>
@@ -21,5 +20,25 @@
         <file>resources/shuffle.png</file>
         <file>resources/radio.png</file>
         <file>resources/bkg.png</file>
+        <file>resources/fonts/open-sans/Apache License.txt</file>
+        <file>resources/fonts/open-sans/OpenSans-Bold.ttf</file>
+        <file>resources/fonts/open-sans/OpenSans-BoldItalic.ttf</file>
+        <file>resources/fonts/open-sans/OpenSans-ExtraBold.ttf</file>
+        <file>resources/fonts/open-sans/OpenSans-ExtraBoldItalic.ttf</file>
+        <file>resources/fonts/open-sans/OpenSans-Italic.ttf</file>
+        <file>resources/fonts/open-sans/OpenSans-Light.ttf</file>
+        <file>resources/fonts/open-sans/OpenSans-LightItalic.ttf</file>
+        <file>resources/fonts/open-sans/OpenSans-Regular.ttf</file>
+        <file>resources/fonts/open-sans/OpenSans-Semibold.ttf</file>
+        <file>resources/fonts/open-sans/OpenSans-SemiboldItalic.ttf</file>
+        <file>resources/fonts/F_Awesome-5_Free-Solid-900.otf</file>
+        <file>resources/fonts/F_Awesome-5_Regular-400.otf</file>
+        <file>resources/fonts/Font Awesome 5 Free-Regular-400.otf</file>
+        <file>resources/fonts/Font Awesome 5 Free-Solid-900.otf</file>
+        <file>resources/streaming.png</file>
+        <file>resources/onlineplay/gaana.png</file>
+        <file>resources/onlineplay/jio.png</file>
+        <file>resources/onlineplay/spotify.png</file>
+        <file>resources/onlineplay/wybk.png</file>
     </qresource>
 </RCC>

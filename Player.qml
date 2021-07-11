@@ -1,7 +1,8 @@
 import QtQuick 2.0
 import Qt.labs.settings 1.0
 import io.qt.examples.backend 1.0
-
+import QtQuick.Controls 1.4
+import QtQuick.Layouts 1.12
 //TODO: Implement Seek
 //Control Button Sync with Event
 
@@ -10,7 +11,8 @@ Rectangle {                    //arranged all componet of frontend main page in 
 //    border.width: 10
 //    border.color: "grey"
     property bool offlinevisible  : true
-    property bool  listingvisible: false
+    property bool  radiovisible: false
+    property bool streamvisible: false
     Image {
         id: playerBg
         source: "qrc:/graphics/resources/bkg.png"
@@ -63,7 +65,7 @@ Rectangle {                    //arranged all componet of frontend main page in 
         }
     }
 
-    OptionsBar {
+    OptionsBar {                                            //visible while offline mode
         id:optionCtrlObj
         width: 40
         anchors.top: parent.top
@@ -98,18 +100,30 @@ Rectangle {                    //arranged all componet of frontend main page in 
             }
         }
     }
-    Listing{
-        id:listingobj
+
+
+   Radiolist{                                             // component visibile for radio  strems
+        id:radiolistobj
         anchors.top:parent.top
         anchors.bottom: parent.bottom
         anchors.left: optionCtrlObj.right
         anchors.leftMargin: 60
         anchors.right: parent.right
         anchors.margins: 2
-        visible: listingvisible
+        visible: radiovisible
+    }
+   Streamerlist{                                             // component visibile for online strems
+        id:streamerobj
+        anchors.top:parent.top
+        anchors.bottom: parent.bottom
+        anchors.left: optionCtrlObj.right
+        anchors.leftMargin: 60
+        anchors.right: parent.right
+        anchors.margins: 2
+        visible: streamvisible
     }
 
-    PlayList {
+    PlayList {                                                 //component visible for offline mode
         id:playListObj
         anchors.top:parent.top
         anchors.bottom: controlContainer.top

@@ -120,6 +120,12 @@ Item {
             width:70
             height:70
             text: "\uf013"
+            visible: if(offlinevisible)
+                         true
+                         else if(radiovisible)
+                         true
+                         else
+                         false
             anchors.rightMargin: 20
             background: Rectangle{
                // color:"white"
@@ -136,10 +142,9 @@ Item {
                 id:radioma
                 anchors.fill: parent
                 onClicked: {
-                      listingvisible= listingvisible?false:true
+                      radiovisible= radiovisible?false:true
                      offlinevisible=offlinevisible?false:true
-                    listingobj.radiovisible=true
-                      listingobj.streamervisible=false
+
                 }
             }
 
@@ -150,12 +155,18 @@ Item {
             width:70
             height:70
             text: "\uf013"
+            visible: if(offlinevisible)
+                         true
+                         else if(streamvisible)
+                         true
+                         else
+                         false
             anchors.rightMargin: 20
             background: Rectangle{
                // color:"white"
                 border.color: "grey"
                 Image {
-                    source: "qrc:/graphics/resources/radio.png"
+                    source: "qrc:/graphics/resources/streaming.png"
                     anchors.fill: parent
                 }
                 border.width: 0.98
@@ -166,10 +177,8 @@ Item {
                 id:streamMA
                 anchors.fill: parent
                 onClicked: {
-                      listingvisible= listingvisible?false:true
+                      streamvisible= streamvisible?false:true
                      offlinevisible=offlinevisible?false:true
-                    listingobj.radiovisible=false
-                    listingobj.streamervisible=true
                 }
             }
 

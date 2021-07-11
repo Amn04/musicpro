@@ -3,7 +3,7 @@
 #include <QFontDatabase>
 #include <QDebug>
 #include <QIcon>
-#include <QtWebView/QtWebView>
+#include <QtWebView>
 #include "backend.h"
 
 int main(int argc, char *argv[])
