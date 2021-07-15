@@ -5,14 +5,22 @@ import QtWebView 1.1
 Item {
 
     property string  ur: "https://gaana.com/"
-    WebView {
-        id:web
+
+    WebView {                                          //web visible only when something selected
+        id:streamweb
         visible: false
-           anchors.fill: parent
+        anchors.fill: parent
+
            url: ur
 
        }
-
+    function tostop(){
+        streamweb.reload()
+    }
+    function toreload(){
+         console.debug("reload called   uhgiuh                      ")
+        streamweb.reload()
+    }
     ScrollView{
         id:scroll
         anchors.fill: parent
@@ -24,6 +32,25 @@ Item {
            width: rootWindow.width
            height:rootWindow.height
            columnSpacing: 20
+           Column{
+            Image {
+                height: 300
+                width: 300
+                source: "qrc:/graphics/resources/onlineplay/wybk.png"
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: {
+                        grid.visible=false
+                        streamweb.visible=true
+                        scroll.visible=false
+                       ur="https://wynk.in/"
+                    }
+                }
+            }
+            Text {
+                text: qsTr("Wynk Music")
+            }
+        }
 
 
               Column{
@@ -35,7 +62,7 @@ Item {
                        anchors.fill: parent
                        onClicked: {
                            grid.visible=false
-                           web.visible=true
+                           streamweb.visible=true
                            scroll.visible=false
                           ur="https://www.jiosaavn.com/"
                        }
@@ -46,45 +73,27 @@ Item {
                }
            }
 
-              Column{
-               Image {
-                   height: 300
-                   width: 300
-                   source: "qrc:/graphics/resources/onlineplay/spotify.png"
-                   MouseArea{
-                       anchors.fill: parent
-                       onClicked: {
-                           grid.visible=false
-                           web.visible=true
-                           scroll.visible=false
-                          ur="https://www.spotify.com/"
-                       }
-                   }
-               }
-               Text {
-                   text: qsTr("Spotify")
-               }
-           }
+//              Column{
+//               Image {
+//                   height: 300
+//                   width: 300
+//                   source: "qrc:/graphics/resources/onlineplay/spotify.png"
+//                   MouseArea{
+//                       anchors.fill: parent
+//                       onClicked: {
+//                           grid.visible=false
+//                           web.visible=true
+//                           scroll.visible=false
+//                          ur="https://www.spotify.com/"
+//                       }
+//                   }
+//               }
+//               Text {
+//                   text: qsTr("Spotify")
+//               }
+//           }
 
-              Column{
-               Image {
-                   height: 300
-                   width: 300
-                   source: "qrc:/graphics/resources/onlineplay/wybk.png"
-                   MouseArea{
-                       anchors.fill: parent
-                       onClicked: {
-                           grid.visible=false
-                           web.visible=true
-                           scroll.visible=false
-                          ur="https://wynk.in/"
-                       }
-                   }
-               }
-               Text {
-                   text: qsTr("Wynk Music")
-               }
-           }
+
 
 //              Column{             //some problem song not playing
 //               Image {

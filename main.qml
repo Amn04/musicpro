@@ -4,8 +4,8 @@ import QtQuick.Window 2.0
 Window {
     id:rootWindow
     visible: true
-    width: 600
-    height: 480
+    width: 1000
+    height: 750
     title: qsTr("Music Pro")
 
     Player {

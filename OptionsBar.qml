@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.15
 import QtQuick.Controls 2.0
 
 Item {
@@ -7,18 +7,14 @@ Item {
     property int browseFoldersButton: 0
     property int browseFilesButton: 1
     signal clicked(int buttonid)
-    Image {
-        id: playerCtlBg
-        source: "qrc:/graphics/resources/white.png"
-        anchors.fill: parent;
-        opacity: 0
-    }
+
     Column
     {
         id:ctrlRow
 //        anchors.horizontalCenter: playerCtlBg.horizontalCenter
 //        anchors.verticalCenter: playerCtlBg.verticalCenter
-        spacing: 3;
+        spacing: 5
+        padding: 10
 
         Button{
             id:folderbt
@@ -76,45 +72,45 @@ Item {
 //            }
 //            //fontcolor: "#4885ed"
 //        }
-       Button{
-           id:soundbt
-            width:70
-            height:70
-            anchors.rightMargin: 20
-            text: "\uf028" //mute f026
-            background: Rectangle{
-               // color:"white"
-                border.color: "grey"
-                Image {
-                    source: "qrc:/graphics/resources/volume-button.png"
-                    anchors.fill: parent
-                }
-                border.width: 0.98
-                radius: 19
-                color: soundbt.hovered ? "orange" : "transparent"
-            }
-            //fontcolor: "#4885ed"
-        }
+//       Button{
+//           id:soundbt
+//            width:70
+//            height:70
+//            anchors.rightMargin: 20
+//            text: "\uf028" //mute f026
+//            background: Rectangle{
+//               // color:"white"
+//                border.color: "grey"
+//                Image {
+//                    source: "qrc:/graphics/resources/volume-button.png"
+//                    anchors.fill: parent
+//                }
+//                border.width: 0.98
+//                radius: 19
+//                color: soundbt.hovered ? "orange" : "transparent"
+//            }
+//            //fontcolor: "#4885ed"
+//        }
 
-        Button{
-            id:settingbt
-            width:70
-            height:70
-            text: "\uf013"
-            anchors.rightMargin: 20
-            background: Rectangle{
-               // color:"white"
-                border.color: "grey"
-                Image {
-                    source: "qrc:/graphics/resources/settings.png"
-                    anchors.fill: parent
-                }
-                border.width: 0.98
-                radius: 19
-                color: settingbt.hovered ? "orange" : "transparent"
-            }
-            //fontcolor: "#4885ed"
-        }
+//        Button{
+//            id:settingbt
+//            width:70
+//            height:70
+//            text: "\uf013"
+//            anchors.rightMargin: 20
+//            background: Rectangle{
+//               // color:"white"
+//                border.color: "grey"
+//                Image {
+//                    source: "qrc:/graphics/resources/settings.png"
+//                    anchors.fill: parent
+//                }
+//                border.width: 0.98
+//                radius: 19
+//                color: settingbt.hovered ? "orange" : "transparent"
+//            }
+//            //fontcolor: "#4885ed"
+//        }
         Button{
             id:radiobt
             width:70
@@ -142,6 +138,10 @@ Item {
                 id:radioma
                 anchors.fill: parent
                 onClicked: {
+                    if(radiovisible==true)
+                       radiolistobj.tostop()
+                    else
+                        radiolistobj.toreload()
                       radiovisible= radiovisible?false:true
                      offlinevisible=offlinevisible?false:true
 
@@ -177,13 +177,46 @@ Item {
                 id:streamMA
                 anchors.fill: parent
                 onClicked: {
+                    if(streamvisible==true)
+                       streamerobj.tostop()
+                    else
+                        streamerobj.toreload()
                       streamvisible= streamvisible?false:true
                      offlinevisible=offlinevisible?false:true
                 }
             }
-
-            //fontcolor: "#4885ed"
         }
+        Button{
+            id:streambackbt
+            width:70
+            height:70
+            text: "\uf013"
+            visible: if(offlinevisible)
+                         false
+                         else if(streamvisible)
+                         true
+
+            anchors.rightMargin: 20
+            background: Rectangle{
+               // color:"white"
+                border.color: "grey"
+                Image {
+                    source: "qrc:/graphics/resources/back.png"
+                    anchors.fill: parent
+                }
+                border.width: 0.98
+                radius: 19
+                color: streambt.hovered ? "orange" : "transparent"
+            }
+            MouseArea{
+                id:streambackMA
+                anchors.fill: parent
+                onClicked: {
+                    streamerobj.s
+                }
+            }
+        }
+
     }
 }
 

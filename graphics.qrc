@@ -40,5 +40,6 @@
         <file>resources/onlineplay/jio.png</file>
         <file>resources/onlineplay/spotify.png</file>
         <file>resources/onlineplay/wybk.png</file>
+        <file>resources/back.png</file>
     </qresource>
 </RCC>
