@@ -41,5 +41,6 @@
         <file>resources/onlineplay/spotify.png</file>
         <file>resources/onlineplay/wybk.png</file>
         <file>resources/back.png</file>
+        <file>resources/icon/music-player.ico</file>
     </qresource>
 </RCC>

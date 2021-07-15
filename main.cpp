@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     app.setOrganizationName("MusicPro");
     app.setOrganizationDomain("aman");
     app.setApplicationName("Music Player");
-    app.setWindowIcon(QIcon("qrc:/graphics/resources/gogo.png"));
+
     qmlRegisterType<BackEnd>("io.qt.examples.backend", 1, 0, "BackEnd");
     QQmlApplicationEngine engine;
 

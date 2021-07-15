@@ -191,10 +191,7 @@ Item {
             width:70
             height:70
             text: "\uf013"
-            visible: if(offlinevisible)
-                         false
-                         else if(streamvisible)
-                         true
+            visible: streamerobj.status()
 
             anchors.rightMargin: 20
             background: Rectangle{
@@ -212,7 +209,7 @@ Item {
                 id:streambackMA
                 anchors.fill: parent
                 onClicked: {
-                    streamerobj.s
+                    streamerobj.back()
                 }
             }
         }

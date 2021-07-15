@@ -5,7 +5,6 @@ import QtWebView 1.1
 Item {
 
     property string  ur: "https://gaana.com/"
-
     WebView {                                          //web visible only when something selected
         id:streamweb
         visible: false
@@ -18,9 +17,21 @@ Item {
         streamweb.reload()
     }
     function toreload(){
-         console.debug("reload called   uhgiuh                      ")
+         console.debug("reload called ")
         streamweb.reload()
     }
+    function back(){
+        streamweb.visible=false
+        grid.visible=true
+        scroll.visible=true
+    }
+    function status(){
+        if(streamweb.visible)
+            return true
+        else
+           return false
+    }
+
     ScrollView{
         id:scroll
         anchors.fill: parent
