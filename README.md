@@ -1,6 +1,6 @@
 # Simple Music Player in Qt & QML.
 This project is very easy with simple logics implemented.
-This project is modification of gogo. To copy and use this project or modify it you need to include available license in this  project to all copied project.
+This project is modification of gogo(https://github.com/karthagokul/GoGo). To copy and use this project or modify it you need to include available license in this  project to all copied project.
 
 # How to run code
 1.Qt Creator 
